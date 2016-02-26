@@ -1,0 +1,14 @@
+public class SalesLineItem{
+	int quantity;
+
+	public SalesLineItem(){
+		quantity = 1;
+	}
+	public SalesLineItem(int quantity){
+		this.quantity = quantity;
+	}
+
+	public double getSubtotal(){
+		return quantity * getPrice();
+	}
+}
