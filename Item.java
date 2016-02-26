@@ -16,4 +16,8 @@ public class Item{
 	public double getPrice(){
 		return price;
 	}
+
+	public String getItemID(){
+		return itemID;
+	}
 }
