@@ -1,17 +1,13 @@
 public class SalesLineItem{
-    Item item;
+    SaleItem item;
     int quantity;
 
-    public SalesLineItem(Item item){
+    public SalesLineItem(SaleItem item, int quantity){
         this.item = item;
-        quantity = 1;
-    }
-
-    public SalesLineItem(int quantity){
-	   this.quantity = quantity;
+        this.quantity = quantity;
     }
 
     public double getSubtotal(){
-	   return quantity * getPrice();
+	   return quantity * item.getPrice();
     }
 }
