@@ -1,10 +1,33 @@
 
 import java.util.ArrayList;
+import java.sql.* ;  // for standard JDBC programs
+import java.math.* ; // for BigDecimal and BigInteger support
 import java.util.List;
 
 public class Inventory {
-
-    static private List<ItemStock> items;
+	
+	public Inventory() throws Exception{
+	try {
+		   Class.forName("com.mysql.jdbc.Driver");
+		   Connection conn = DriverManager.getConnection("jdbc:mysql://54.209.1.181/216pos","root","216216");
+		   conn.close();
+		}
+		catch(ClassNotFoundException ex) {
+		   System.out.println("Error: unable to load driver class!");
+		   System.exit(1);
+		}
+	}
+	
+	public static void main(String[] args) throws Exception{
+		Inventory inventory = new Inventory();
+	}
+}
+		
+		
+	
+	
+	
+	/*static private List<ItemStock> items;
 
     public Inventory() {
         items = new ArrayList<ItemStock>();
@@ -42,4 +65,4 @@ public class Inventory {
         }
     }
 
-}
+}*/
