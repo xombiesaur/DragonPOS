@@ -1,24 +1,25 @@
 
-/*import java.util.ArrayList;
+import java.util.ArrayList;
 import java.sql.* ;  // for standard JDBC programs
 import java.math.* ; // for BigDecimal and BigInteger support
 import java.util.List;
 
-public class Inventory {*/
-	
-    //STEP 1. Import required packages
+public class Inventory {
+
+/*//    //STEP 1. Import required packages
 import java.sql.*;
 import java.util.ArrayList;
 
 public class Inventory {
-   /*// JDBC driver name and database URL
-   static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
+	//*/
+   // JDBC driver name and database URL
+   static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
    static final String DB_URL = "jdbc:mysql://54.209.1.181/216pos";
 
    //  Database credentials
-   static final String USER = "root";
+   static final String USER = "amber";
    static final String PASS = "216216";
-   
+
    public static void main(String[] args) {
    Connection conn = null;
    Statement stmt = null;
@@ -77,7 +78,7 @@ public class Inventory {
    }//end try
    System.out.println("Goodbye!");
 }//end main
-}*/
+} //*/
 
 /*
 	public Inventory() throws Exception{
@@ -91,16 +92,16 @@ public class Inventory {
 		   System.exit(1);
 		}
 	}
-	
+
 	public static void main(String[] args) throws Exception{
 		Inventory inventory = new Inventory();
 	}
 }
-*/	
-		
-	
-	
-	
+
+
+
+
+/*
 	static private ArrayList<ItemStock> items;
 
     public Inventory() {
@@ -132,7 +133,7 @@ public class Inventory {
     }
 }
 
-
+*/
 /*
     public SaleItem removeItem(String itemID) {
         for (ItemStock itemStock : items) {
