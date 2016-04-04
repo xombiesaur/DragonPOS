@@ -1,5 +1,4 @@
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -16,6 +15,7 @@ public class LoginGUI {
 	private JFrame frame;
 	private JTextField txtUserName;
 	private JPasswordField pwdPassword;
+	private LoginDB loginDB;
 
 	/**
 	 * Launch the application.
@@ -38,6 +38,7 @@ public class LoginGUI {
 	 */
 	public LoginGUI() {
 		initialize();
+		loginDB = new LoginDB();
 	}
 
 	/**
@@ -80,8 +81,11 @@ public class LoginGUI {
 				String userName=txtUserName.getText();
 				@SuppressWarnings("deprecation")
 				String password=pwdPassword.getText();//should change to .getPassword() for safe use. 
-				if(userName.equals("testUser") && password.equals("testPassword")){
+				if(password.equals(loginDB.getPassword(userName)) && password != null){ 
 					JOptionPane.showMessageDialog(null, "You have logged in");
+				}
+				else{
+					JOptionPane.showMessageDialog(null, "Sorry, incorrect username and password combination!");
 				}
 
 			}
