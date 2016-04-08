@@ -82,7 +82,33 @@ public class LoginGUI {
 				@SuppressWarnings("deprecation")
 				String password=pwdPassword.getText();//should change to .getPassword() for safe use. 
 				if(password.equals(loginDB.getPassword(userName)) && password != null){ 
-					JOptionPane.showMessageDialog(null, "You have logged in");
+					//JOptionPane.showMessageDialog(null, "You have logged in");
+					//testing opening another GUIframe
+					try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(ActionFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(ActionFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(ActionFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(ActionFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>                                                                                                                                                             
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new ActionFrame().setVisible(true);
+            }
+        });
+//end GUITEST
 				}
 				else{
 					JOptionPane.showMessageDialog(null, "Sorry, incorrect username and password combination!");

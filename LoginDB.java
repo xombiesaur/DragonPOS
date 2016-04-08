@@ -7,51 +7,12 @@ import java.math.* ; // for BigDecimal and BigInteger support
 import java.util.List;
 
 public class LoginDB {
-  // JDBC driver name and database URL
-  static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-  static final String DB_URL = "jdbc:mysql://54.209.1.181/216pos";
+    private Connection conn = null;
 
-  //  Database credentials
-  static final String USER = "amber";
-  static final String PASS = "216216";
-
-  private Connection conn = null;
-
-  public LoginDB(){
-    try{
-		//STEP 2: Register JDBC driver
-		Class.forName("com.mysql.jdbc.Driver");
-
-		//STEP 3: Open a connection
-		System.out.println("Connecting to database...");
-		conn = DriverManager.getConnection(DB_URL,USER,PASS);
-
-	}
-      /*//STEP 6: Clean-up environment
-      rs.close();
-      stmt.close();
-      conn.close();*/
-    catch(SQLException se){
-      //Handle errors for JDBC
-      se.printStackTrace();
-    }catch(Exception e){
-      //Handle errors for Class.forName
-      e.printStackTrace();
-    }/*finally{
-      //finally block used to close resources
-      try{
-        if(stmt!=null)
-          stmt.close();
-      }catch(SQLException se2){
-      }// nothing we can do
-      try{
-        if(conn!=null)
-          conn.close();
-      }catch(SQLException se){
-        se.printStackTrace();
-      }
-    }//end finally*/
-  }//end instantiate
+    public LoginDB(){
+		DBConnection temp = new DBConnection();
+		conn = temp.getConnection();
+	}	
 
     public String getPassword(String username){
 	  	try{
