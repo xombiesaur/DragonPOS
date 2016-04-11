@@ -87,6 +87,17 @@ public class ProcessRentalFrame extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tableItems);
 
         buttonGoBack.setText("Go Back");
+              
+        //buttonGoBack.setText("ProcessRentalReturn");
+         buttonGoBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+               System.out.println("Executing");
+                buttonGoBackActionPerformed(evt);
+            }
+        });
+
+
+
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -169,6 +180,35 @@ public class ProcessRentalFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    
+    
+     private void buttonManageUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonManageUsersActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new ManageUsersFrame().setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_buttonManageUsersActionPerformed
+    
+    private void buttonGoBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGoBackActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new ActionFrame().setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_buttonGoBackActionPerformed
+    
+
+
+    
+    
+    
+    
 
     private void textFieldItemIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldItemIDActionPerformed
         // TODO add your handling code here:
@@ -231,3 +271,5 @@ public class ProcessRentalFrame extends javax.swing.JFrame {
     private javax.swing.JTextPane textPaneReceipt;
     // End of variables declaration//GEN-END:variables
 }
+
+

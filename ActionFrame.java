@@ -43,10 +43,22 @@ public class ActionFrame extends javax.swing.JFrame {
         });
 
         buttonManageUsers.setText("ManageUsers");
+         buttonManageUsers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonManageUsersActionPerformed(evt);
+            }
+        });
 
         buttonProcessSaleReturn.setText("ProcessSaleReturn");
+        
 
         buttonProcessRentalReturn.setText("ProcessRentalReturn");
+         buttonProcessRentalReturn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+               System.out.println("Executing");
+                buttonProcessRentalReturnActionPerformed(evt);
+            }
+        });
 
         buttonProcessSale.setText("ProcessSale");
 
@@ -101,6 +113,32 @@ public class ActionFrame extends javax.swing.JFrame {
             }
         });
     }//GEN-LAST:event_buttonProcessRentalActionPerformed
+    
+    
+     private void buttonManageUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonManageUsersActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new ManageUsersFrame().setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_buttonManageUsersActionPerformed
+    
+     private void buttonProcessRentalReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonProcessRentalReturnActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new ProcessRentalReturnFrame().setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_buttonProcessRentalReturnActionPerformed
+    
+
+    
+    
+    
 
     /**
      * @param args the command line arguments
