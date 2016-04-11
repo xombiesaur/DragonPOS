@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Inventory {
 
-	private Connection conn = null;
+	private static Connection conn = null;
 
 	public Inventory(){
 		conn = DBConnection.getInstance();
