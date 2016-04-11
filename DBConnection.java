@@ -21,7 +21,7 @@ public class DBConnection{
   	//nothing here;
   }
 
-  public Connection getConnection(){
+  public static Connection getConnection(){
   	if(conn == null){
 	    try{
 			//STEP 2: Register JDBC driver

@@ -7,7 +7,7 @@ public class RentalTransaction{
 	ArrayList<RentalLineItem> lines = new ArrayList<RentalLineItem>();
 
 		public RentalTransaction(){
-		inventory = new Inventory();
+			inventory = new Inventory();
 		}
 
 		public void addItemByID(String itemID){
