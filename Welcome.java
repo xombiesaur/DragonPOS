@@ -2,7 +2,7 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class Welcome{
+public class welcome{
     public static void main(String args[]){
     	ArrayList<String> cashierIDs = new ArrayList<String>();
     	cashierIDs.add("1a");
