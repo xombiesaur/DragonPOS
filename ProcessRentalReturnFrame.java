@@ -177,6 +177,7 @@ public class ProcessRentalReturnFrame extends javax.swing.JFrame {
 
     private void buttonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddActionPerformed
         // TODO add your handling code here:
+        System.out.println("hello");
     }//GEN-LAST:event_buttonAddActionPerformed
 
     /**
