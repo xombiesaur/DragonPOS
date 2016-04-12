@@ -13,6 +13,11 @@ public class ItemStock{
 	this(id, price);
 	this.quantity = quantity;
     }
+    
+  public ItemStock(String id, String description, float price){
+	this(id, price);
+	this.description = description;
+    }
 
     public ItemStock(String id, float price){
 	this.id = id;

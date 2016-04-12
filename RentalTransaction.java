@@ -16,10 +16,11 @@ public class RentalTransaction{
     		System.out.println("The item with id "+itemID+" is not currently in our rental inventory.");
     		return;
     	}
-    	ItemStock tempItem = inventory.getItemStockFromID(itemID);
+    	ItemStock tempItem = inventory.getRentalItemFromID(itemID);
     	//check for item in current line items
     	boolean itemExists = false;
     	//loop through current SalesLineItems
+    	/*
     	for(RentalLineItem lineItem : lines){
     		if(lineItem.getItemID().equals(itemID)){
     			//increment existing lineItem conatianing item to be added
@@ -33,6 +34,6 @@ public class RentalTransaction{
     		RentalLineItem tempSLI = new RentalLineItem(tempRentalItem);
     		lines.add(tempSLI);
     	}
-
+			//*/
     }
 }

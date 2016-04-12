@@ -16,7 +16,7 @@ public class SalesTransaction{
     		System.out.println("The item with id "+itemID+" is not currently in our inventory.");
     		return;
     	}
-    	ItemStock tempItem = inventory.getItemStockFromID(itemID);
+    	ItemStock tempItem = inventory.getSaleItemFromID(itemID);
     	//check for item in current line items
     	boolean itemExists = false;
     	//loop through current SalesLineItems

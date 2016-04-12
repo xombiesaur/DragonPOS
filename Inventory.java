@@ -16,25 +16,42 @@ public class Inventory {
 		conn = DBConnection.getConnection();
 	}//end instantiate
 
-	
-	public String[] getSaleItemFromID(String itemID){
+		public boolean itemInInventory(String itemID){
 		try{
 			Statement stmt = null;
-			//STEP 4: Execute a query
-		stmt = conn.createStatement();
-		String sql;
-		sql = "SELECT itemName, itemPrice FROM saleItem WHERE itemID = '"+itemID+"'";
-		ResultSet rs = stmt.executeQuery(sql);
-	
-		//STEP 5: Extract data from result set
-		while(rs.next()){
-			//Retrieve by column name
-			String [] iteminfo = new String[2];
-			iteminfo[0]	= rs.getString("itemName");
-			iteminfo[1] = rs.getString("itemPrice");
-			return iteminfo;
+			stmt = conn.createStatement();
+			String sql;
+			sql = "SELECT count(*) FROM item WHERE itemID = '"+itemID+"'";
+			ResultSet rs = stmt.executeQuery(sql);
+			int isARental;
+			isARental = rs.getInt(1);
+			if (isARental > 0 ){
+				return true;
 			}
+			return false;
+		}catch(Exception ex){
+                        System.out.println("error gettng info: "+ex.toString());
+                        return false;
+		}
+	}
 	
+	
+	public ItemStock getSaleItemFromID(String itemID){
+		try{
+			Statement stmt = null;
+				//STEP 4: Execute a query
+			stmt = conn.createStatement();
+			String sql;
+			sql = "SELECT itemName, itemPrice FROM saleItem WHERE itemID = '"+itemID+"'";
+			ResultSet rs = stmt.executeQuery(sql);
+		
+			//STEP 5: Extract data from result set
+			while(rs.next()){
+				//Retrieve by column name
+				ItemStock itemInfo = new ItemStock(itemID, rs.getString("itemName"), rs.getInt("itemPrice"));
+				return itemInfo;
+			}
+		
 				return null;
 		}catch(Exception ex){
 			System.out.println("error gettng info: "+ex.toString());
@@ -62,7 +79,7 @@ public class Inventory {
 		}
 	}
 //get intem info for rental
-	public String[] getRentalItemFromID(String itemID){
+	public ItemStock getRentalItemFromID(String itemID){
 		try{
 		Statement stmt = null;
 			//STEP 4: Execute a query
@@ -72,13 +89,10 @@ public class Inventory {
 		ResultSet rs = stmt.executeQuery(sql);
 	
 		//STEP 5: Extract data from result set
-		while(rs.next()){
-			//Retrieve by column name
-			String [] iteminfo = new String[2];
-			iteminfo[0]	= rs.getString("itemName");
-			iteminfo[1] = rs.getString("itemPrice");
-			
-			return iteminfo;
+			while(rs.next()){
+				//Retrieve by column name
+				ItemStock itemInfo = new ItemStock(itemID, rs.getString("itemName"), rs.getInt("itemPrice"));
+				return itemInfo;
 			}
 	
 				return null;
