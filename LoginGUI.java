@@ -48,9 +48,10 @@ public class LoginGUI {
     private void initialize() {
         frame = new JFrame();
         frame.setBounds(100, 100, 717, 571);
+        frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);
-
+        frame.setTitle("Team Dragon POS Login");
         JLabel lblTitle = new JLabel("Team Dragon POS");
         lblTitle.setFont(new Font("Times New Roman", Font.BOLD, 64));
         lblTitle.setHorizontalAlignment(SwingConstants.CENTER);

@@ -8,6 +8,7 @@
  *
  * @author Amoah
  */
+ import java.awt.*;
 public class ManageUsersFrame extends javax.swing.JFrame {
 
     /**
@@ -31,7 +32,9 @@ public class ManageUsersFrame extends javax.swing.JFrame {
         buttonDelete = new javax.swing.JButton();
         buttonUpdate = new javax.swing.JButton();
         buttonGoBack = new javax.swing.JButton();
-
+        
+        setTitle("Manage Users View");
+        
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         tableCashiers.setModel(new javax.swing.table.DefaultTableModel(
@@ -50,8 +53,14 @@ public class ManageUsersFrame extends javax.swing.JFrame {
         buttonDelete.setText("Delete");
 
         buttonUpdate.setText("Update");
-
-        buttonGoBack.setText("Go Back");
+        
+         buttonGoBack.setText("Go Back");
+        buttonGoBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+               System.out.println("hello there");
+                buttonGoBackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -121,6 +130,23 @@ public class ManageUsersFrame extends javax.swing.JFrame {
             }
         });
     }
+    
+    
+    private void buttonGoBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGoBackActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Made it here!");
+        
+        this.setVisible(false);
+        //this.dispose();
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new ActionFrame().setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_buttonGoBackActionPerformed
+    
+
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonDelete;

@@ -43,7 +43,7 @@ public class ProcessRentalFrame extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tableItems = new javax.swing.JTable();
         buttonGoBack = new javax.swing.JButton();
-
+         setTitle("Process Rental View");
         jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -87,6 +87,15 @@ public class ProcessRentalFrame extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tableItems);
 
         buttonGoBack.setText("Go Back");
+        buttonGoBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+               System.out.println("hello there");
+                buttonGoBackActionPerformed(evt);
+            }
+        });
+
+
+
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -169,6 +178,38 @@ public class ProcessRentalFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    
+    
+     private void buttonManageUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonManageUsersActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new ManageUsersFrame().setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_buttonManageUsersActionPerformed
+    
+    private void buttonGoBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGoBackActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Made it here!");
+        
+        this.setVisible(false);
+        //this.dispose();
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new ActionFrame().setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_buttonGoBackActionPerformed
+    
+
+
+    
+    
+    
+    
 
     private void textFieldItemIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldItemIDActionPerformed
         // TODO add your handling code here:
@@ -231,3 +272,5 @@ public class ProcessRentalFrame extends javax.swing.JFrame {
     private javax.swing.JTextPane textPaneReceipt;
     // End of variables declaration//GEN-END:variables
 }
+
+

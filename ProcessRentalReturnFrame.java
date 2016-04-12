@@ -27,7 +27,8 @@ public class ProcessRentalReturnFrame extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
+          setTitle("Process Rental Return View");
+          setLocationRelativeTo(null);
         jMenuItem1 = new javax.swing.JMenuItem();
         textFieldItemID = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -55,7 +56,7 @@ public class ProcessRentalReturnFrame extends javax.swing.JFrame {
         });
 
         jLabel1.setText("Item ID");
-
+        
         jLabel2.setText("Quantity");
 
         jLabel3.setText("Duration");
@@ -87,6 +88,12 @@ public class ProcessRentalReturnFrame extends javax.swing.JFrame {
         jScrollPane2.setViewportView(textPaneReceipt);
 
         buttonGoBack.setText("Go Back");
+        buttonGoBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+               System.out.println("hello there");
+                buttonGoBackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -179,6 +186,21 @@ public class ProcessRentalReturnFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.out.println("hello");
     }//GEN-LAST:event_buttonAddActionPerformed
+
+
+
+    private void buttonGoBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGoBackActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Made it here!");
+        
+        this.setVisible(false);
+        //this.dispose();
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new ActionFrame().setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_buttonGoBackActionPerformed
 
     /**
      * @param args the command line arguments
