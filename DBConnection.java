@@ -15,7 +15,7 @@ public class DBConnection{
   static final String USER = "amber";
   static final String PASS = "216216";
 
-  private Connection conn = null;
+  private static Connection conn = null;
 
   public DBConnection(){
   	//nothing here;

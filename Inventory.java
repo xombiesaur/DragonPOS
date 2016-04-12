@@ -13,14 +13,9 @@ public class Inventory {
 	private static Connection conn = null;
 
 	public Inventory(){
-		conn = DBConnection.getInstance();
+		conn = DBConnection.getConnection();
 	}//end instantiate
-	
-	private ResultSet dbRequest(String sql){
-		Statement stmt = null;
-		stmt = conn.createStatement();
-		return stmt.executeQuery(sql);
-	}  
+
 	
 	public String[] getSaleItemFromID(String itemID){
 		try{
@@ -34,7 +29,7 @@ public class Inventory {
 		//STEP 5: Extract data from result set
 		while(rs.next()){
 			//Retrieve by column name
-			String iteminfo = new String[2];
+			String [] iteminfo = new String[2];
 			iteminfo[0]	= rs.getString("itemName");
 			iteminfo[1] = rs.getString("itemPrice");
 			return iteminfo;
@@ -48,7 +43,8 @@ public class Inventory {
 	}
 	
 //check inventory if item is avalable for rental
-		public boolean itemInRentalInventory(String itemID){
+	public boolean itemInRentalInventory(String itemID){
+		try{
 			Statement stmt = null;
 			stmt = conn.createStatement();
 			String sql;
@@ -60,10 +56,13 @@ public class Inventory {
 				return true;
 			}
 			return false;
+		}catch(Exception ex){
+                        System.out.println("error gettng info: "+ex.toString());
+                        return false;
 		}
-	
+	}
 //get intem info for rental
-		public String[] getRentalItemFromID(String itemID){
+	public String[] getRentalItemFromID(String itemID){
 		try{
 		Statement stmt = null;
 			//STEP 4: Execute a query
@@ -75,7 +74,7 @@ public class Inventory {
 		//STEP 5: Extract data from result set
 		while(rs.next()){
 			//Retrieve by column name
-			String iteminfo = new String[2];
+			String [] iteminfo = new String[2];
 			iteminfo[0]	= rs.getString("itemName");
 			iteminfo[1] = rs.getString("itemPrice");
 			
