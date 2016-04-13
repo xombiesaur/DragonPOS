@@ -15,6 +15,7 @@ public class ManageUsersFrame extends javax.swing.JFrame {
      */
     public ManageUsersFrame() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -52,6 +53,11 @@ public class ManageUsersFrame extends javax.swing.JFrame {
         buttonUpdate.setText("Update");
 
         buttonGoBack.setText("Go Back");
+        buttonGoBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonGoBackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -86,6 +92,17 @@ public class ManageUsersFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void buttonGoBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGoBackActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new ActionFrame().setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_buttonGoBackActionPerformed
 
     /**
      * @param args the command line arguments

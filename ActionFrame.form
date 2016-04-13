@@ -77,26 +77,41 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="ManageUsers"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonManageUsersActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="buttonProcessSaleReturn">
       <Properties>
         <Property name="text" type="java.lang.String" value="ProcessSaleReturn"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonProcessSaleReturnActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="buttonProcessRentalReturn">
       <Properties>
         <Property name="text" type="java.lang.String" value="ProcessRentalReturn"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonProcessRentalReturnActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="buttonProcessSale">
       <Properties>
         <Property name="text" type="java.lang.String" value="ProcessSale"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonProcessSaleActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="buttonLogout">
       <Properties>
         <Property name="text" type="java.lang.String" value="Logout"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonLogoutActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

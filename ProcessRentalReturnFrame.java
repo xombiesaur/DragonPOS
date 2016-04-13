@@ -5,7 +5,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Amoah
@@ -17,6 +16,7 @@ public class ProcessRentalReturnFrame extends javax.swing.JFrame {
      */
     public ProcessRentalReturnFrame() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -87,6 +87,11 @@ public class ProcessRentalReturnFrame extends javax.swing.JFrame {
         jScrollPane2.setViewportView(textPaneReceipt);
 
         buttonGoBack.setText("Go Back");
+        buttonGoBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonGoBackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -162,9 +167,8 @@ public class ProcessRentalReturnFrame extends javax.swing.JFrame {
                         .addGap(1, 1, 1)
                         .addComponent(buttonRemove)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 3, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(buttonGoBack))
         );
 
@@ -177,8 +181,18 @@ public class ProcessRentalReturnFrame extends javax.swing.JFrame {
 
     private void buttonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddActionPerformed
         // TODO add your handling code here:
-        System.out.println("hello");
     }//GEN-LAST:event_buttonAddActionPerformed
+
+    private void buttonGoBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGoBackActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new ActionFrame().setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_buttonGoBackActionPerformed
 
     /**
      * @param args the command line arguments

@@ -27,6 +27,7 @@ public class LoginGUI {
                 try {
                     LoginGUI window = new LoginGUI();
                     window.frame.setVisible(true);
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -39,6 +40,7 @@ public class LoginGUI {
      */
     public LoginGUI() {
         initialize();
+        frame.setLocationRelativeTo(null);
         loginDB = new LoginDB();
     }
 
@@ -83,7 +85,7 @@ public class LoginGUI {
                 @SuppressWarnings("deprecation")
                 String password = pwdPassword.getText();//should change to .getPassword() for safe use. 
                 if (password.equals(loginDB.getPassword(userName)) && password != null) {
-					//JOptionPane.showMessageDialog(null, "You have logged in");
+                    //JOptionPane.showMessageDialog(null, "You have logged in");
                     //testing opening another GUIframe
                     try {
                         for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -101,7 +103,7 @@ public class LoginGUI {
                     } catch (javax.swing.UnsupportedLookAndFeelException ex) {
                         java.util.logging.Logger.getLogger(ActionFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
                     }
-        //</editor-fold>                                                                                                                                                             
+                    //</editor-fold>                                                                                                                                                             
                     frame.dispose();
                     /* Create and display the form */
                     java.awt.EventQueue.invokeLater(new Runnable() {

@@ -15,6 +15,7 @@ public class ActionFrame extends javax.swing.JFrame {
      */
     public ActionFrame() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -43,26 +44,39 @@ public class ActionFrame extends javax.swing.JFrame {
         });
 
         buttonManageUsers.setText("ManageUsers");
-         buttonManageUsers.addActionListener(new java.awt.event.ActionListener() {
+        buttonManageUsers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonManageUsersActionPerformed(evt);
             }
         });
 
         buttonProcessSaleReturn.setText("ProcessSaleReturn");
-        
+        buttonProcessSaleReturn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonProcessSaleReturnActionPerformed(evt);
+            }
+        });
 
         buttonProcessRentalReturn.setText("ProcessRentalReturn");
-         buttonProcessRentalReturn.addActionListener(new java.awt.event.ActionListener() {
+        buttonProcessRentalReturn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-               System.out.println("Executing");
                 buttonProcessRentalReturnActionPerformed(evt);
             }
         });
 
         buttonProcessSale.setText("ProcessSale");
+        buttonProcessSale.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonProcessSaleActionPerformed(evt);
+            }
+        });
 
         buttonLogout.setText("Logout");
+        buttonLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonLogoutActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -113,33 +127,61 @@ public class ActionFrame extends javax.swing.JFrame {
             }
         });
     }//GEN-LAST:event_buttonProcessRentalActionPerformed
-    
-    
+
+
      private void buttonManageUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonManageUsersActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ManageUsersFrame().setVisible(true);
-            }
-        });
+         // TODO add your handling code here:
+         this.dispose();
+         java.awt.EventQueue.invokeLater(new Runnable() {
+             public void run() {
+                 new ManageUsersFrame().setVisible(true);
+             }
+         });
     }//GEN-LAST:event_buttonManageUsersActionPerformed
-    
+
      private void buttonProcessRentalReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonProcessRentalReturnActionPerformed
+         // TODO add your handling code here:
+         this.dispose();
+         java.awt.EventQueue.invokeLater(new Runnable() {
+             public void run() {
+                 new ProcessRentalReturnFrame().setVisible(true);
+             }
+         });
+    }//GEN-LAST:event_buttonProcessRentalReturnActionPerformed
+
+    private void buttonProcessSaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonProcessSaleActionPerformed
         // TODO add your handling code here:
         this.dispose();
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ProcessRentalReturnFrame().setVisible(true);
+                new ProcessSaleFrame().setVisible(true);
             }
         });
-    }//GEN-LAST:event_buttonProcessRentalReturnActionPerformed
-    
+    }//GEN-LAST:event_buttonProcessSaleActionPerformed
+
+    private void buttonProcessSaleReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonProcessSaleReturnActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new ProcessSaleReturnFrame().setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_buttonProcessSaleReturnActionPerformed
+
+    private void buttonLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLogoutActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                String[] args = {"garbage"};
+                LoginGUI.main(args);
+            }
+        });
+    }//GEN-LAST:event_buttonLogoutActionPerformed
 
     
     
-    
-
     /**
      * @param args the command line arguments
      */
@@ -175,6 +217,8 @@ public class ActionFrame extends javax.swing.JFrame {
      });
      }
      */
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonLogout;
     private javax.swing.JButton buttonManageUsers;

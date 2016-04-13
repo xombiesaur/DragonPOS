@@ -17,6 +17,7 @@ public class ProcessRentalFrame extends javax.swing.JFrame {
      */
     public ProcessRentalFrame() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -87,17 +88,11 @@ public class ProcessRentalFrame extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tableItems);
 
         buttonGoBack.setText("Go Back");
-              
-        //buttonGoBack.setText("ProcessRentalReturn");
-         buttonGoBack.addActionListener(new java.awt.event.ActionListener() {
+        buttonGoBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-               System.out.println("Executing");
                 buttonGoBackActionPerformed(evt);
             }
         });
-
-
-
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
