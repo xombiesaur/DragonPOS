@@ -8,6 +8,7 @@
  *
  * @author Amoah
  */
+ import java.awt.*;
 public class ManageUsersFrame extends javax.swing.JFrame {
 
     /**
@@ -32,7 +33,17 @@ public class ManageUsersFrame extends javax.swing.JFrame {
         buttonDelete = new javax.swing.JButton();
         buttonUpdate = new javax.swing.JButton();
         buttonGoBack = new javax.swing.JButton();
-
+        
+        
+        Dimension dim=Toolkit.getDefaultToolkit().getScreenSize();
+        int framewidth=this.getSize().width;//get the width of the frame
+        int frameheigth=this.getSize().height; //get the heigth of the frame
+        int framelocationX=(dim.width-framewidth)/2; 
+        int framelocationY=(dim.height-frameheigth)/2;
+        this.setLocation(framelocationX,framelocationY);
+        
+        setTitle("Manage Users View");
+        
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         tableCashiers.setModel(new javax.swing.table.DefaultTableModel(
@@ -51,10 +62,18 @@ public class ManageUsersFrame extends javax.swing.JFrame {
         buttonDelete.setText("Delete");
 
         buttonUpdate.setText("Update");
+<<<<<<< HEAD
 
         buttonGoBack.setText("Go Back");
         buttonGoBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
+=======
+        
+         buttonGoBack.setText("Go Back");
+        buttonGoBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+               System.out.println("");
+>>>>>>> 86ee14ab7b739ee2db2bdeb1d7ae7b06507ac412
                 buttonGoBackActionPerformed(evt);
             }
         });
@@ -91,6 +110,8 @@ public class ManageUsersFrame extends javax.swing.JFrame {
         );
 
         pack();
+        
+        
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonGoBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGoBackActionPerformed
@@ -138,6 +159,23 @@ public class ManageUsersFrame extends javax.swing.JFrame {
             }
         });
     }
+    
+    
+    private void buttonGoBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGoBackActionPerformed
+        // TODO add your handling code here:
+        System.out.println("!");
+        
+        this.setVisible(false);
+        //this.dispose();
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new ActionFrame().setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_buttonGoBackActionPerformed
+    
+
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonDelete;

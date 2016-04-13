@@ -10,6 +10,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.*;
 
 public class LoginGUI {
 
@@ -50,9 +51,19 @@ public class LoginGUI {
     private void initialize() {
         frame = new JFrame();
         frame.setBounds(100, 100, 717, 571);
+        
+        
+        Dimension dim=Toolkit.getDefaultToolkit().getScreenSize();
+        int framewidth=frame.getSize().width;//get the width of the frame
+        int frameheigth=frame.getSize().height; //get the heigth of the frame
+        int framelocationX=(dim.width-framewidth)/2; 
+        int framelocationY=(dim.height-frameheigth)/2;
+        frame.setLocation(framelocationX,framelocationY);
+        
+        
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);
-
+        frame.setTitle("Team Dragon POS Login");
         JLabel lblTitle = new JLabel("Team Dragon POS");
         lblTitle.setFont(new Font("Times New Roman", Font.BOLD, 64));
         lblTitle.setHorizontalAlignment(SwingConstants.CENTER);

@@ -27,7 +27,8 @@ public class ProcessRentalReturnFrame extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
+          setTitle("Process Rental Return View");
+          setLocationRelativeTo(null);
         jMenuItem1 = new javax.swing.JMenuItem();
         textFieldItemID = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -55,7 +56,7 @@ public class ProcessRentalReturnFrame extends javax.swing.JFrame {
         });
 
         jLabel1.setText("Item ID");
-
+        
         jLabel2.setText("Quantity");
 
         jLabel3.setText("Duration");
@@ -89,6 +90,10 @@ public class ProcessRentalReturnFrame extends javax.swing.JFrame {
         buttonGoBack.setText("Go Back");
         buttonGoBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
+<<<<<<< HEAD
+=======
+               System.out.println("hello there");
+>>>>>>> 86ee14ab7b739ee2db2bdeb1d7ae7b06507ac412
                 buttonGoBackActionPerformed(evt);
             }
         });
@@ -183,10 +188,21 @@ public class ProcessRentalReturnFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_buttonAddActionPerformed
 
+<<<<<<< HEAD
     private void buttonGoBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGoBackActionPerformed
         // TODO add your handling code here:
         this.dispose();
         /* Create and display the form */
+=======
+
+
+    private void buttonGoBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGoBackActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Made it here!");
+        
+        this.setVisible(false);
+        //this.dispose();
+>>>>>>> 86ee14ab7b739ee2db2bdeb1d7ae7b06507ac412
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ActionFrame().setVisible(true);
