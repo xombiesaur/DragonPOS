@@ -62,18 +62,11 @@ public class ManageUsersFrame extends javax.swing.JFrame {
         buttonDelete.setText("Delete");
 
         buttonUpdate.setText("Update");
-<<<<<<< HEAD
-
-        buttonGoBack.setText("Go Back");
-        buttonGoBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-=======
         
          buttonGoBack.setText("Go Back");
         buttonGoBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                System.out.println("");
->>>>>>> 86ee14ab7b739ee2db2bdeb1d7ae7b06507ac412
                 buttonGoBackActionPerformed(evt);
             }
         });
@@ -113,17 +106,6 @@ public class ManageUsersFrame extends javax.swing.JFrame {
         
         
     }// </editor-fold>//GEN-END:initComponents
-
-    private void buttonGoBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGoBackActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ActionFrame().setVisible(true);
-            }
-        });
-    }//GEN-LAST:event_buttonGoBackActionPerformed
 
     /**
      * @param args the command line arguments
