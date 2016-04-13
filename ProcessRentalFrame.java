@@ -10,6 +10,7 @@
  *
  * @author Amoah
  */
+ import java.awt.*;
 public class ProcessRentalFrame extends javax.swing.JFrame {
 
     /**
@@ -43,8 +44,16 @@ public class ProcessRentalFrame extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tableItems = new javax.swing.JTable();
         buttonGoBack = new javax.swing.JButton();
-
+         setTitle("Process Rental View");
         jMenuItem1.setText("jMenuItem1");
+        
+        
+         Dimension dim=Toolkit.getDefaultToolkit().getScreenSize();
+        int framewidth=this.getSize().width;//get the width of the frame
+        int frameheigth=this.getSize().height; //get the heigth of the frame
+        int framelocationX=(dim.width-framewidth)/2; 
+        int framelocationY=(dim.height-frameheigth)/2;
+        this.setLocation(framelocationX,framelocationY);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -87,11 +96,9 @@ public class ProcessRentalFrame extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tableItems);
 
         buttonGoBack.setText("Go Back");
-              
-        //buttonGoBack.setText("ProcessRentalReturn");
-         buttonGoBack.addActionListener(new java.awt.event.ActionListener() {
+        buttonGoBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-               System.out.println("Executing");
+               System.out.println("");
                 buttonGoBackActionPerformed(evt);
             }
         });
@@ -195,7 +202,10 @@ public class ProcessRentalFrame extends javax.swing.JFrame {
     
     private void buttonGoBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGoBackActionPerformed
         // TODO add your handling code here:
-        this.dispose();
+        System.out.println("!");
+        
+        this.setVisible(false);
+        //this.dispose();
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ActionFrame().setVisible(true);

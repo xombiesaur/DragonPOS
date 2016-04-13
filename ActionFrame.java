@@ -1,3 +1,16 @@
+import java.awt.EventQueue;
+import javax.swing.JFrame;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
+import java.awt.Font;
+import javax.swing.JPasswordField;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.*;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -25,44 +38,83 @@ public class ActionFrame extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+         /* lblTitle = new javax.swing.JLabel();
+        lblTitle.setFont(new Font("Times New Roman", Font.BOLD, 64));
+        lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
+        lblTitle.setBounds(12, 13, 675, 144);
+        getContentPane().add(lblTitle);
 
+        lblTitle.setText("Team Dragon POS");
+         
+         */
+         
+         Dimension dim=Toolkit.getDefaultToolkit().getScreenSize();
+        int framewidth=this.getSize().width;//get the width of the frame
+        int frameheigth=this.getSize().height; //get the heigth of the frame
+        int framelocationX=(dim.width-framewidth)/2; 
+        int framelocationY=(dim.height-frameheigth)/2;
+        this.setLocation(framelocationX,framelocationY);
+         
+         
+         
         buttonProcessRental = new javax.swing.JButton();
         buttonManageUsers = new javax.swing.JButton();
         buttonProcessSaleReturn = new javax.swing.JButton();
         buttonProcessRentalReturn = new javax.swing.JButton();
         buttonProcessSale = new javax.swing.JButton();
         buttonLogout = new javax.swing.JButton();
-
+         setTitle("Action View");
+         //setLocationRelativeTo(null);
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        buttonProcessRental.setText("ProcessRental");
+        buttonProcessRental.setText("Process Rental");
         buttonProcessRental.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonProcessRentalActionPerformed(evt);
             }
         });
 
-        buttonManageUsers.setText("ManageUsers");
+        buttonManageUsers.setText("Manage Users");
          buttonManageUsers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonManageUsersActionPerformed(evt);
             }
         });
 
-        buttonProcessSaleReturn.setText("ProcessSaleReturn");
-        
+        buttonProcessSaleReturn.setText("Process Sale Return");
+        buttonProcessSaleReturn.setText("Process Rental Return");
+         buttonProcessSaleReturn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+               System.out.println("");
+                buttonProcessSaleReturnActionPerformed(evt);
+            }
+        });
 
-        buttonProcessRentalReturn.setText("ProcessRentalReturn");
+
+        buttonProcessRentalReturn.setText("Process Rental Return");
          buttonProcessRentalReturn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-               System.out.println("Executing");
+               System.out.println("");
                 buttonProcessRentalReturnActionPerformed(evt);
             }
         });
 
-        buttonProcessSale.setText("ProcessSale");
+        buttonProcessSale.setText("Process Sale");
+         buttonProcessSale.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+               //System.out.println("");
+                buttonProcessSaleActionPerformed(evt);
+            }
+        });
 
         buttonLogout.setText("Logout");
+        buttonLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+               //System.out.println("");
+                buttonLogoutActionPerformed(evt);
+            }
+        });
+
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -136,8 +188,33 @@ public class ActionFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonProcessRentalReturnActionPerformed
     
 
+    private void buttonLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLogoutActionPerformed
+        // TODO add your handling code here:
+        System.exit(1);
+    }//GEN-LAST:event_buttonLogoutActionPerformed
+
+     private void buttonProcessSaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonProcessSaleActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new ProcessSaleGui().setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_buttonProcessSaleActionPerformed
     
+      private void buttonProcessSaleReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonProcessSaleReturnActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new ProcessRentalReturnFrame().setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_buttonProcessSaleReturnActionPerformed
     
+
+
     
 
     /**
@@ -182,5 +259,6 @@ public class ActionFrame extends javax.swing.JFrame {
     private javax.swing.JButton buttonProcessRentalReturn;
     private javax.swing.JButton buttonProcessSale;
     private javax.swing.JButton buttonProcessSaleReturn;
+    private javax.swing.JLabel lblTitle;
     // End of variables declaration//GEN-END:variables
 }
