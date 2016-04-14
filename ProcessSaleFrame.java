@@ -68,6 +68,11 @@ public class ProcessSaleFrame extends javax.swing.JFrame {
         buttonRemove.setText("Remove");
 
         buttonProcess.setText("Process");
+        buttonProcess.addActionListener(new java.awt.event.ActionListener(){
+        	public void actionPerformed(java.awt.event.ActionEvent evt){
+        		buttonProcessActionPerformed(evt);
+        	}
+        });
 
         jScrollPane2.setViewportView(textPaneReceipt);
 
