@@ -1,3 +1,9 @@
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import javax.swing.table.DefaultTableModel;
 
 
 /*
@@ -16,6 +22,7 @@ public class ProcessSaleFrame extends javax.swing.JFrame {
      * Creates new form ProcessRentalFrame
      */
     public ProcessSaleFrame() {
+    	setTitle("Process Sale View");
         initComponents();
         this.setLocationRelativeTo(null);
         saleT = new SalesTransaction();
@@ -37,9 +44,26 @@ public class ProcessSaleFrame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         buttonAdd = new javax.swing.JButton();
         buttonRemove = new javax.swing.JButton();
+        buttonRemove.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent arg0) 
+        	{
+        		DefaultTableModel model = (DefaultTableModel) tableItems.getModel();
+        		int[] rows = tableItems.getSelectedRows();
+        		for(int i = 0; i<rows.length; i++)
+        		{
+        			model.removeRow(rows[i]-i);
+        		}
+        	}
+        });
         buttonProcess = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         textPaneReceipt = new javax.swing.JTextPane();
+        textPaneReceipt.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseClicked(MouseEvent arg0) {
+        		  
+        	}
+        });
         jScrollPane1 = new javax.swing.JScrollPane();
         tableItems = new javax.swing.JTable();
         buttonGoBack = new javax.swing.JButton();
@@ -68,14 +92,11 @@ public class ProcessSaleFrame extends javax.swing.JFrame {
         buttonRemove.setText("Remove");
 
         buttonProcess.setText("Process");
-        buttonProcess.addActionListener(new java.awt.event.ActionListener(){
-        	public void actionPerformed(java.awt.event.ActionEvent evt){
-        		buttonProcessActionPerformed(evt);
-        	}
-        });
 
         jScrollPane2.setViewportView(textPaneReceipt);
 
+  
+        
         tableItems.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
