@@ -17,6 +17,7 @@ public class ProcessRentalFrame extends javax.swing.JFrame {
      */
     public ProcessRentalFrame() {
         initComponents();
+        setTitle("Process Rental");
         this.setLocationRelativeTo(null);
     }
 

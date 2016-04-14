@@ -1,3 +1,7 @@
+import javax.swing.JLabel;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.GroupLayout;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -14,6 +18,7 @@ public class ActionFrame extends javax.swing.JFrame {
      * Creates new form ActionFrame
      */
     public ActionFrame() {
+    	setTitle("Action Frame");
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -77,43 +82,53 @@ public class ActionFrame extends javax.swing.JFrame {
                 buttonLogoutActionPerformed(evt);
             }
         });
+        
+        JLabel optionLabel = new JLabel("Please select one of the following options:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(114, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(buttonManageUsers)
-                            .addComponent(buttonProcessRentalReturn)
-                            .addComponent(buttonProcessRental)
-                            .addComponent(buttonProcessSale)
-                            .addComponent(buttonProcessSaleReturn))
-                        .addGap(153, 153, 153))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(buttonLogout)
-                        .addContainerGap())))
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
+        			.addContainerGap(481, Short.MAX_VALUE)
+        			.addComponent(buttonLogout)
+        			.addContainerGap())
+        		.addGroup(layout.createSequentialGroup()
+        			.addGap(52)
+        			.addComponent(optionLabel)
+        			.addContainerGap(302, Short.MAX_VALUE))
+        		.addGroup(layout.createSequentialGroup()
+        			.addGap(96)
+        			.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
+        				.addComponent(buttonProcessRentalReturn, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        				.addComponent(buttonProcessSale, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        				.addComponent(buttonProcessRental, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        				.addComponent(buttonProcessSaleReturn, GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
+        				.addComponent(buttonManageUsers, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        			.addContainerGap(327, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(buttonProcessRental)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonProcessRentalReturn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonProcessSale)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonProcessSaleReturn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonManageUsers)
-                .addGap(18, 18, 18)
-                .addComponent(buttonLogout)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addContainerGap()
+        			.addComponent(optionLabel)
+        			.addGap(18)
+        			.addComponent(buttonProcessRental)
+        			.addGap(18)
+        			.addComponent(buttonProcessRentalReturn)
+        			.addPreferredGap(ComponentPlacement.UNRELATED)
+        			.addComponent(buttonProcessSale)
+        			.addGap(11)
+        			.addComponent(buttonProcessSaleReturn)
+        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        				.addGroup(layout.createSequentialGroup()
+        					.addGap(26)
+        					.addComponent(buttonLogout))
+        				.addGroup(layout.createSequentialGroup()
+        					.addGap(6)
+        					.addComponent(buttonManageUsers)))
+        			.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+        getContentPane().setLayout(layout);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -226,5 +241,4 @@ public class ActionFrame extends javax.swing.JFrame {
     private javax.swing.JButton buttonProcessRentalReturn;
     private javax.swing.JButton buttonProcessSale;
     private javax.swing.JButton buttonProcessSaleReturn;
-    // End of variables declaration//GEN-END:variables
 }
