@@ -10,30 +10,31 @@ public class SalesTransaction{
 		inventory = new Inventory();
     }
 
-    public void addItemByID(String itemID){
+    public String addItemByIDAndQuantity(String itemID, int quantity){
     	//check for item in inventory
-    	if(!inventory.itemInInventory(itemID)){
-    		System.out.println("The item with id "+itemID+" is not currently in our inventory.");
-    		return;
+        int curStock = inventory.itemInSaleInventory(itemID);
+    	if(curStock <= 0){
+    		return "The item with id "+itemID+" is not currently in our inventory.";
     	}
-    	ItemStock tempItem = inventory.getSaleItemFromID(itemID);
-    	//check for item in current line items
-    	boolean itemExists = false;
-    	//loop through current SalesLineItems
-    	for(SalesLineItem lineItem : lines){
-    		if(lineItem.getItemID().equals(itemID)){
-    			//increment existing lineItem conatianing item to be added
-    			itemExists = true;
-    			lineItem.increment();
-    		}
-    	}
-    	if(!itemExists){
-    		//new salesLineItem needs to be created to hold item
-    		SaleItem tempSalesItem = new SaleItem(tempItem.getDescription(), tempItem.getPrice(), tempItem.getID());
-    		SalesLineItem tempSLI = new SalesLineItem(tempSalesItem);
-    		lines.add(tempSLI);
-    	}
-
+        else if(curStock < quantity){
+            return "You have requested more of this item than is in stock.";
+        }
+        else{
+            boolean exists = false;
+            //check for item already in inventory
+            for(SalesLineItem lineItem : lines){
+                if(lineItem.getItemID().equals(itemID)){
+                    //increment existing lineItem conatianing item to be added
+                    lineItem.incrementBy(quantity);
+                    exists = true;
+                }
+            }
+            if(!exists){
+                //create new salesline item
+                lines.add(new SalesLineItem(itemID, quantity, inventory.getSaleItemPriceFromID(itemID), inventory.getSaleItemNameFromID(itemID)));
+            }
+            return "This item was added to sales transaction successfuly.";
+        }
     }
 
     public void getPayment(Scanner scanner){

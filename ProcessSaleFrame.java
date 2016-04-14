@@ -11,13 +11,14 @@
  * @author Amoah
  */
 public class ProcessSaleFrame extends javax.swing.JFrame {
-
+    SalesTransaction saleT;
     /**
      * Creates new form ProcessRentalFrame
      */
     public ProcessSaleFrame() {
         initComponents();
         this.setLocationRelativeTo(null);
+        saleT = new SalesTransaction();
     }
 
     /**
@@ -72,13 +73,13 @@ public class ProcessSaleFrame extends javax.swing.JFrame {
 
         tableItems.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "ItemID", "Quantity", "TotalCost"
+                "ItemID", "Name", "Quantity", "TotalCost"
             }
         ));
         jScrollPane1.setViewportView(tableItems);
@@ -197,6 +198,9 @@ public class ProcessSaleFrame extends javax.swing.JFrame {
 
     private void buttonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddActionPerformed
         // TODO add your handling code here:
+        //check that item id exists in inventory and that there are enough in stock for requested quantity
+        saleT.addItemByIDAndQuantity(textFieldItemID.getText(), Integer.parseInt(textFieldQuantity.getText()));
+        updateLineItemDisplay();
     }//GEN-LAST:event_buttonAddActionPerformed
 
     /**
@@ -232,6 +236,24 @@ public class ProcessSaleFrame extends javax.swing.JFrame {
                 new ProcessRentalFrame().setVisible(true);
             }
         });
+    }
+
+    private void updateLineItemDisplay(){
+        Object lineItems[][] = new Object[saleT.lines.size()][4];
+        int i = 0;
+        for(SalesLineItem item : saleT.lines){
+            lineItems[i][0] = item.getItemID();
+            lineItems[i][1] = item.getItemDescription();
+            lineItems[i][2] = item.getQuantity();
+            lineItems[i][3] = item.getSubtotal();
+            i++;
+        }
+        tableItems.setModel(new javax.swing.table.DefaultTableModel(
+            lineItems,
+            new String [] {
+                "ItemID", "Name", "Quantity", "TotalCost"
+            }
+        ));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

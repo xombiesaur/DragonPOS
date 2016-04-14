@@ -1,30 +1,37 @@
 public class SalesLineItem{
-    SaleItem item;
+    String itemID;
     int quantity;
+    float price;
+    String description = null;
 
-    public SalesLineItem(SaleItem item){
-        this.item = item;
-        quantity = 1;
+    public SalesLineItem(String itemID, int quantity, float price){
+        this.itemID = itemID;
+        this.quantity = quantity;
+        this.price = price;
+    }
+    public SalesLineItem(String itemID, int quantity, float price, String description){
+        this(itemID, quantity, price);
+        this.description = description;
     }
 
-    public double getSubtotal(){
-	   return quantity * item.getPrice();
+    public float getSubtotal(){
+	   return quantity * price;
     }
 
     public String getItemID(){
-    	return item.getItemID();
+    	return itemID;
     }
 
     public float getItemPrice(){
-    	return item.getPrice();
+    	return price;
     }
 
-    public void increment(){
-    	quantity++;
+    public void incrementBy(int q){
+    	quantity += q;
     }
 
     public String getItemDescription(){
-    	return item.getDescription();
+    	return description;
     }
 
     public int getQuantity(){

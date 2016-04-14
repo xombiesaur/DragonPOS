@@ -16,40 +16,39 @@ public class Inventory {
 		conn = DBConnection.getConnection();
 	}//end instantiate
 
-		public boolean itemInInventory(String itemID){
+	public static int itemInSaleInventory(String itemID){
 		try{
 			Statement stmt = null;
 			stmt = conn.createStatement();
 			String sql;
-			sql = "SELECT count(*) FROM item WHERE itemID = '"+itemID+"'";
+			sql = "SELECT * FROM item WHERE itemID = '"+itemID+"' AND isRental = 0";
 			ResultSet rs = stmt.executeQuery(sql);
-			int isARental;
-			isARental = rs.getInt(1);
-			if (isARental > 0 ){
-				return true;
-			}
-			return false;
+			if(!rs.next()){
+        return -1;
+      }
+      else{
+        return rs.getInt("currentInventory");
+      }
 		}catch(Exception ex){
-                        System.out.println("error gettng info: "+ex.toString());
-                        return false;
+      System.out.println("error gettng info: "+ex.toString());
+      return -2;
 		}
 	}
 	
 	
-	public ItemStock getSaleItemFromID(String itemID){
+	public String getSaleItemNameFromID(String itemID){
 		try{
 			Statement stmt = null;
 				//STEP 4: Execute a query
 			stmt = conn.createStatement();
 			String sql;
-			sql = "SELECT itemName, itemPrice FROM saleItem WHERE itemID = '"+itemID+"'";
+			sql = "SELECT itemName FROM item WHERE itemID = '"+itemID+"'";
 			ResultSet rs = stmt.executeQuery(sql);
 		
 			//STEP 5: Extract data from result set
 			while(rs.next()){
 				//Retrieve by column name
-				ItemStock itemInfo = new ItemStock(itemID, rs.getString("itemName"), rs.getInt("itemPrice"));
-				return itemInfo;
+				return rs.getString("itemName");
 			}
 		
 				return null;
@@ -58,6 +57,28 @@ public class Inventory {
 			return null;
 		}
 	}
+
+  public float getSaleItemPriceFromID(String itemID){
+    try{
+      Statement stmt = null;
+        //STEP 4: Execute a query
+      stmt = conn.createStatement();
+      String sql;
+      sql = "SELECT salePrice FROM item WHERE itemID = '"+itemID+"'";
+      ResultSet rs = stmt.executeQuery(sql);
+    
+      //STEP 5: Extract data from result set
+      while(rs.next()){
+        //Retrieve by column name
+        return rs.getFloat("salePrice");
+      }
+    
+      return -1;
+    }catch(Exception ex){
+      System.out.println("error gettng info: "+ex.toString());
+      return -2;
+    }
+  }
 	
 //check inventory if item is avalable for rental
 	public boolean itemInRentalInventory(String itemID){

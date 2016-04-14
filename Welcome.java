@@ -1,4 +1,4 @@
-//execution class for loging in and starting transaction
+/*execution class for loging in and starting transaction
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -44,4 +44,4 @@ public class Welcome{
 		System.out.println("Goodbye!");
 	}
 }
-	
+*/
