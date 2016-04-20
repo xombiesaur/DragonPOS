@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.List;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.ButtonGroup;
+import javax.swing.JOptionPane;
 
 public class PaymentGUI extends JFrame {
 
@@ -90,6 +91,10 @@ public class PaymentGUI extends JFrame {
 		JButton btnPay = new JButton("Pay");
 		btnPay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				JOptionPane.showMessageDialog(null, "Amount $"+txtAmount.getText()+" has been paid");
+				txtAmount.setText("");
+				textField.setText("");
+
 			}
 		});
 		btnPay.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -99,6 +104,13 @@ public class PaymentGUI extends JFrame {
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+		        java.awt.EventQueue.invokeLater(new Runnable() {
+		            public void run() {
+		                new ActionFrame().setVisible(true);
+		                
+		            }
+		        });
 			}
 		});
 		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 16));
