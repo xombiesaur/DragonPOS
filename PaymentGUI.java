@@ -90,9 +90,6 @@ public class PaymentGUI extends JFrame {
 		JButton btnPay = new JButton("Pay");
 		btnPay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(null, "Amount $"+txtAmount.getText()+" has been paid"");
-				txtAmount.setText("");
-
 			}
 		});
 		btnPay.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -102,13 +99,6 @@ public class PaymentGUI extends JFrame {
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				this.setVisible(false);
-				//this.dispose();
-				java.awt.EventQueue.invokeLater(new Runnable() {
-					public void run() {
-					new ActionFrame().setVisible(true);
-					}
-				});
 			}
 		});
 		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 16));
