@@ -11,7 +11,7 @@
  * @author Amoah
  */
 public class ProcessRentalFrame extends javax.swing.JFrame {
-
+		RentalTransaction rentalT;
     /**
      * Creates new form ProcessRentalFrame
      */
@@ -19,6 +19,7 @@ public class ProcessRentalFrame extends javax.swing.JFrame {
         initComponents();
         setTitle("Process Rental");
         this.setLocationRelativeTo(null);
+        rentalT = new RentalTransaction();
     }
 
     /**
@@ -212,6 +213,8 @@ public class ProcessRentalFrame extends javax.swing.JFrame {
 
     private void buttonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddActionPerformed
         // TODO add your handling code here:
+       	rentalT.addItemByID(textFieldItemID.getText(), Integer.parseInt(textFieldQuantity.getText()));
+        updateLineItemDisplay();
     }//GEN-LAST:event_buttonAddActionPerformed
 
     /**
