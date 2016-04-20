@@ -12,7 +12,7 @@ public class RentalTransaction{
 
 		public String addItemByID(String itemID, int duration , int quantity){
     	//check for item in inventory
-      System.out.println();
+      System.out.println("");
       boolean isRental = inventory.itemInRentalInventory(itemID);
     	int curStock = 5; // change this later
     	
