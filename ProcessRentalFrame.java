@@ -1,4 +1,9 @@
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
+import javax.swing.table.DefaultTableModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -213,7 +218,7 @@ public class ProcessRentalFrame extends javax.swing.JFrame {
 
     private void buttonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddActionPerformed
         // TODO add your handling code here:
-       	rentalT.addItemByID(textFieldItemID.getText(), Integer.parseInt(textFieldQuantity.getText()));
+       	rentalT.addItemByID(textFieldItemID.getText(),Integer.parseInt(textFieldDuration.getText()), Integer.parseInt(textFieldQuantity.getText()));
         updateLineItemDisplay();
     }//GEN-LAST:event_buttonAddActionPerformed
 
@@ -250,6 +255,24 @@ public class ProcessRentalFrame extends javax.swing.JFrame {
                 new ProcessRentalFrame().setVisible(true);
             }
         });
+    }
+
+		private void updateLineItemDisplay(){
+        Object lineItems[][] = new Object[rentalT.lines.size()][4];
+        int i = 0;
+        for(RentalLineItem item : rentalT.lines){
+            lineItems[i][0] = item.getItemID();
+            lineItems[i][1] = item.getItemDescription();
+            lineItems[i][2] = item.getQuantity();
+            lineItems[i][3] = item.getSubtotal();
+            i++;
+        }
+        tableItems.setModel(new javax.swing.table.DefaultTableModel(
+            lineItems,
+            new String [] {
+                "ItemID", "Name", "Quantity", "TotalCost"
+            }
+        ));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
