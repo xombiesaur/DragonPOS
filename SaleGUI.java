@@ -14,7 +14,6 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextArea;
 
-
 public class SaleGUI {
 
 	private JFrame frame;
