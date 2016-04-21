@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class SalesTransaction{
 	Inventory inventory;
-	public ArrayList<SalesLineItem> lines = new ArrayList<SalesLineItem>();
+	ArrayList<SalesLineItem> lines = new ArrayList<SalesLineItem>();
 
     public SalesTransaction(){
 		inventory = new Inventory();
@@ -34,23 +34,6 @@ public class SalesTransaction{
                 lines.add(new SalesLineItem(itemID, quantity, inventory.getSaleItemPriceFromID(itemID), inventory.getSaleItemNameFromID(itemID)));
             }
             return "This item was added to sales transaction successfuly.";
-        }
-    }
-
-    public String removeItemByIDAndQuantity(String itemID, int quantity){
-        boolean remainingInventory = true;
-        //check for item already in inventory
-        for(SalesLineItem lineItem : lines){
-            if(lineItem.getItemID().equals(itemID)){
-                //increment existing lineItem conatianing item to be added
-                remainingInventory = lineItem.decrementBy(quantity);
-            }
-        }
-        if(!exists){
-            //create new salesline item
-            lines.add(new SalesLineItem(itemID, quantity, inventory.getSaleItemPriceFromID(itemID), inventory.getSaleItemNameFromID(itemID)));
-        }
-        return "This item was added to sales transaction successfuly.";
         }
     }
 

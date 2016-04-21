@@ -169,7 +169,7 @@ public class ActionFrame extends javax.swing.JFrame {
         this.dispose();
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ProcessSaleGui().setVisible(true);
+                new ProcessSaleFrame().setVisible(true);
             }
         });
     }//GEN-LAST:event_buttonProcessSaleActionPerformed
