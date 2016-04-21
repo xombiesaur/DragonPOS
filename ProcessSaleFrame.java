@@ -1,21 +1,39 @@
 
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.AttributeSet.CharacterAttribute;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Amoah
  */
 public class ProcessSaleFrame extends javax.swing.JFrame {
+
     SalesTransaction saleT;
+
     /**
      * Creates new form ProcessRentalFrame
      */
     public ProcessSaleFrame() {
+        setTitle("Process Sale View");
         initComponents();
         this.setLocationRelativeTo(null);
         saleT = new SalesTransaction();
@@ -37,12 +55,12 @@ public class ProcessSaleFrame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         buttonAdd = new javax.swing.JButton();
         buttonRemove = new javax.swing.JButton();
-        buttonProcess = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         textPaneReceipt = new javax.swing.JTextPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableItems = new javax.swing.JTable();
         buttonGoBack = new javax.swing.JButton();
+        buttonProcess1 = new javax.swing.JButton();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -67,8 +85,6 @@ public class ProcessSaleFrame extends javax.swing.JFrame {
 
         buttonRemove.setText("Remove");
 
-        buttonProcess.setText("Process");
-
         jScrollPane2.setViewportView(textPaneReceipt);
 
         tableItems.setModel(new javax.swing.table.DefaultTableModel(
@@ -81,13 +97,28 @@ public class ProcessSaleFrame extends javax.swing.JFrame {
             new String [] {
                 "ItemID", "Name", "Quantity", "TotalCost"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tableItems);
 
         buttonGoBack.setText("Go Back");
         buttonGoBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonGoBackActionPerformed(evt);
+            }
+        });
+
+        buttonProcess1.setText("Process");
+        buttonProcess1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonProcess1ActionPerformed(evt);
             }
         });
 
@@ -117,13 +148,11 @@ public class ProcessSaleFrame extends javax.swing.JFrame {
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(buttonProcess)
-                        .addContainerGap(232, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addContainerGap())))
+                        .addComponent(buttonProcess1)
+                        .addGap(0, 223, Short.MAX_VALUE)))
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addComponent(buttonGoBack)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -136,8 +165,8 @@ public class ProcessSaleFrame extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonProcess)
-                        .addGap(91, 91, 91))
+                        .addComponent(buttonProcess1)
+                        .addGap(120, 120, 120))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -162,19 +191,18 @@ public class ProcessSaleFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
-    
-    
+
+
      private void buttonManageUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonManageUsersActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ManageUsersFrame().setVisible(true);
-            }
-        });
+         // TODO add your handling code here:
+         this.dispose();
+         java.awt.EventQueue.invokeLater(new Runnable() {
+             public void run() {
+                 new ManageUsersFrame().setVisible(true);
+             }
+         });
     }//GEN-LAST:event_buttonManageUsersActionPerformed
-    
+
     private void buttonGoBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGoBackActionPerformed
         // TODO add your handling code here:
         this.dispose();
@@ -184,13 +212,7 @@ public class ProcessSaleFrame extends javax.swing.JFrame {
             }
         });
     }//GEN-LAST:event_buttonGoBackActionPerformed
-    
 
-
-    
-    
-    
-    
 
     private void textFieldItemIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldItemIDActionPerformed
         // TODO add your handling code here:
@@ -202,6 +224,51 @@ public class ProcessSaleFrame extends javax.swing.JFrame {
         saleT.addItemByIDAndQuantity(textFieldItemID.getText(), Integer.parseInt(textFieldQuantity.getText()));
         updateLineItemDisplay();
     }//GEN-LAST:event_buttonAddActionPerformed
+
+    private void buttonProcess1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonProcess1ActionPerformed
+        // TODO add your handling code here:
+        int numOfRows = tableItems.getRowCount();
+        TableModel tableModel = tableItems.getModel();
+        float totalCost = 0.0f;
+        textPaneReceipt.setText("");
+        StyledDocument doc = textPaneReceipt.getStyledDocument();
+        try {
+            doc.insertString(doc.getLength(),
+                    String.format("%-20s%20s\n\n", "Item:", "TotalCost:"),
+                    null);
+        } catch (BadLocationException ex) {
+            Logger.getLogger(ProcessSaleFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        for (int index = 0; index < numOfRows; index++) {
+            String itemName = (String) tableModel.getValueAt(index, 1);
+            int quantity = (int) tableModel.getValueAt(index, 2);
+            float unitCost = ((float) tableModel.getValueAt(index, 3)) / quantity;
+            try {
+                doc.insertString(doc.getLength(),
+                        String.format("%-20s%5s%10.2f\n", itemName, "(" + quantity
+                                + ")",
+                                unitCost),
+                        null);
+            } catch (BadLocationException ex) {
+                Logger.getLogger(ProcessSaleFrame.class.getName()).log(
+                        Level.SEVERE, null, ex);
+            }
+            totalCost += quantity * unitCost;
+        }
+        try {
+            doc.insertString(doc.getLength(),
+                    String.format("\n%20s%8.2f\n", "FinalPayment:", totalCost),
+                    null);
+        } catch (BadLocationException ex) {
+            Logger.getLogger(ProcessSaleFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        final float finalPayment = totalCost;
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new PaymentGUI(finalPayment).setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_buttonProcess1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -238,10 +305,10 @@ public class ProcessSaleFrame extends javax.swing.JFrame {
         });
     }
 
-    private void updateLineItemDisplay(){
+    private void updateLineItemDisplay() {
         Object lineItems[][] = new Object[saleT.lines.size()][4];
         int i = 0;
-        for(SalesLineItem item : saleT.lines){
+        for (SalesLineItem item : saleT.lines) {
             lineItems[i][0] = item.getItemID();
             lineItems[i][1] = item.getItemDescription();
             lineItems[i][2] = item.getQuantity();
@@ -249,17 +316,17 @@ public class ProcessSaleFrame extends javax.swing.JFrame {
             i++;
         }
         tableItems.setModel(new javax.swing.table.DefaultTableModel(
-            lineItems,
-            new String [] {
-                "ItemID", "Name", "Quantity", "TotalCost"
-            }
+                lineItems,
+                new String[]{
+                    "ItemID", "Name", "Quantity", "TotalCost"
+                }
         ));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAdd;
     private javax.swing.JButton buttonGoBack;
-    private javax.swing.JButton buttonProcess;
+    private javax.swing.JButton buttonProcess1;
     private javax.swing.JButton buttonRemove;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -272,5 +339,3 @@ public class ProcessSaleFrame extends javax.swing.JFrame {
     private javax.swing.JTextPane textPaneReceipt;
     // End of variables declaration//GEN-END:variables
 }
-
-

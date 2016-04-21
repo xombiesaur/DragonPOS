@@ -16,6 +16,7 @@ public class ManageUsersFrame extends javax.swing.JFrame {
      */
     public ManageUsersFrame() {
         initComponents();
+        setTitle("Manage Users View");
         this.setLocationRelativeTo(null);
     }
 

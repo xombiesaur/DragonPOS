@@ -16,7 +16,9 @@ public class ProcessRentalReturnFrame extends javax.swing.JFrame {
      */
     public ProcessRentalReturnFrame() {
         initComponents();
+        setTitle("Process Rental Return View");
         this.setLocationRelativeTo(null);
+        //rentalT = new RentalTransaction();
     }
 
     /**

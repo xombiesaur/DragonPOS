@@ -12,13 +12,39 @@ public class RentalLineItem {
 
     RentalItem item;
     int duration = 1;
+    String itemID;
+    int quantity;
+    float price;
+    String description = null;
 
-    public RentalLineItem(RentalItem item, int duration) {
-        this.item = item;
+    public RentalLineItem(String itemID, int duration, int quantity, float price, String description) {
+        this.itemID = itemID;
         this.duration = duration;
+        this.quantity = quantity;
+        this.price = price;
     }
 
     public double getSubtotal() {
-        return duration * item.getPrice();
+        return duration * price;
+    }
+    
+    public String getItemID(){
+    	return itemID;
+    }
+
+    public float getItemPrice(){
+    	return price;
+    }
+
+    public void incrementBy(int q){
+    	quantity += q;
+    }
+
+    public String getItemDescription(){
+    	return description;
+    }
+
+    public int getQuantity(){
+    	return quantity;
     }
 }

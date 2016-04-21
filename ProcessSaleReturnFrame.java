@@ -16,6 +16,7 @@ public class ProcessSaleReturnFrame extends javax.swing.JFrame {
      */
     public ProcessSaleReturnFrame() {
         initComponents();
+        setTitle("Process Sale Return View");
         this.setLocationRelativeTo(null);
     }
 

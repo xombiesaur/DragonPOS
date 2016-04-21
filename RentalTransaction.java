@@ -10,15 +10,45 @@ public class RentalTransaction{
 			inventory = new Inventory();
 		}
 
-		public void addItemByID(String itemID){
+		public String addItemByID(String itemID, int duration , int quantity){
     	//check for item in inventory
-    	if(!inventory.itemInRentalInventory(itemID)){
-    		System.out.println("The item with id "+itemID+" is not currently in our rental inventory.");
-    		return;
+      System.out.println("");
+      boolean isRental = inventory.itemInRentalInventory(itemID);
+    	int curStock = 5; // change this later
+    	
+    	if(curStock <= 0){
+    		return "The item with id "+itemID+" is not currently in our inventory.";
     	}
-    	ItemStock tempItem = inventory.getRentalItemFromID(itemID);
+        else if(curStock < quantity){
+            return "You have requested more of this item than is in stock.";
+        }
+        else{
+            boolean exists = false;
+            //check for item already in inventory
+            for(RentalLineItem lineItem : lines){
+                if(lineItem.getItemID().equals(itemID)){
+                    //increment existing lineItem conatianing item to be added
+                    lineItem.incrementBy(quantity);
+                    exists = true;
+                }
+            }
+            if(!exists){
+                //create new salesline item
+                lines.add(new RentalLineItem(itemID, duration, quantity, inventory.getSaleItemPriceFromID(itemID), inventory.getSaleItemNameFromID(itemID)));
+            }
+            return "This item was added to sales transaction successfuly.";
+        }
+    	
+    	
+    	
+    	
+    	//------------------------------------------------------------
+    	// if(!inventory.itemInRentalInventory(itemID)){
+    	// 	return("The item with id "+itemID+" is not currently in our rental inventory.");
+    	// }
+    	//ItemStock tempItem = inventory.getRentalItemFromID(itemID);
     	//check for item in current line items
-    	boolean itemExists = false;
+    	//boolean itemExists = false;
     	//loop through current SalesLineItems
     	/*
     	for(RentalLineItem lineItem : lines){
