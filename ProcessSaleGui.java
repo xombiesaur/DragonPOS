@@ -10,12 +10,13 @@
  */
 import java.awt.*;
 public class ProcessSaleGui extends javax.swing.JFrame {
-
+    SalesTransaction saleT;
     /**
      * Creates new form ProcessSaleGui
      */
     public ProcessSaleGui() {
         initComponents();
+        saleT = new SalesTransaction();
     }
 
     /**
@@ -71,6 +72,11 @@ public class ProcessSaleGui extends javax.swing.JFrame {
         });
 
         remove.setText("Remove");
+        remove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeActionPerformed(evt);
+            }
+        });
 
         back.setText("Go Back");
         back.addActionListener(new java.awt.event.ActionListener() {
@@ -193,7 +199,17 @@ public class ProcessSaleGui extends javax.swing.JFrame {
 
     private void addActionPerformed(java.awt.event.ActionEvent evt) {                                    
         // TODO add your handling code here:
-    }                                   
+        //check that item id exists in inventory and that there are enough in stock for requested quantity
+        saleT.addItemByIDAndQuantity(itemIDField.getText(), Integer.parseInt(quantityField.getText()));
+        updateLineItemDisplay();
+    }       
+
+    private void removeActionPerformed(java.awt.event.ActionEvent evt) {                                    
+        // TODO add your handling code here:
+        //check that item id exists in inventory and that there are enough in stock for requested quantity
+        saleT.removeItemByIDAndQuantity(itemIDField.getText(), Integer.parseInt(quantityField.getText()));
+        updateLineItemDisplay();
+    }                               
 
     private void quantityFieldActionPerformed(java.awt.event.ActionEvent evt) {                                              
         // TODO add your handling code here:
@@ -246,6 +262,24 @@ public class ProcessSaleGui extends javax.swing.JFrame {
                 new ProcessSaleGui().setVisible(true);
             }
         });
+    }
+
+    private void updateLineItemDisplay(){
+        Object lineItems[][] = new Object[saleT.lines.size()][4];
+        int i = 0;
+        for(SalesLineItem item : saleT.lines){
+            lineItems[i][0] = item.getItemID();
+            lineItems[i][1] = item.getItemDescription();
+            lineItems[i][2] = item.getQuantity();
+            lineItems[i][3] = item.getSubtotal();
+            i++;
+        }
+        saleTable.setModel(new javax.swing.table.DefaultTableModel(
+            lineItems,
+            new String [] {
+                "ItemID", "Name", "Quantity", "TotalCost"
+            }
+        ));
     }
 
     // Variables declaration - do not modify                     
