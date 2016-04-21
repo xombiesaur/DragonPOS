@@ -19,6 +19,7 @@ public class PaymentGUI extends JFrame {
 	private JTextField txtAmount;
 	private JTextField textField;
         private float totalCost;
+        JLabel lblEnterCreditNumber;
 
 	/**
 	 * Launch the application.
@@ -44,6 +45,7 @@ public class PaymentGUI extends JFrame {
 		initialize();
                 this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 this.totalCost = totalCost;
+                txtAmount.setText(" "+totalCost+" ");
 	}
 
 	/**
@@ -80,11 +82,11 @@ public class PaymentGUI extends JFrame {
 		this.getContentPane().add(textField);
 		textField.setColumns(10);
 		
-		JLabel lblEnterprice = new JLabel("Enter Amount to Pay");
+		JLabel lblEnterprice = new JLabel("Amount to Pay:");
 		lblEnterprice.setBounds(261, 29, 190, 28);
 		this.getContentPane().add(lblEnterprice);
 		
-		JLabel lblEnterCreditNumber = new JLabel("Enter Credit Number");
+		JLabel lblEnterCreditNumber = new JLabel("Enter Credit Number or Amount In Cash");
 		lblEnterCreditNumber.setBounds(261, 159, 190, 28);
 		this.getContentPane().add(lblEnterCreditNumber);
 		
