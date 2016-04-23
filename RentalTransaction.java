@@ -34,6 +34,7 @@ public class RentalTransaction{
                 }
             }
             if(!exists){
+            		String iName = inventory.getSaleItemNameFromID(itemID);
                 //create new salesline item
                 lines.add(new RentalLineItem(itemID, duration, quantity, inventory.getSaleItemPriceFromID(itemID), inventory.getSaleItemNameFromID(itemID)));
             }
