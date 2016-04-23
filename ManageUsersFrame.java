@@ -14,6 +14,8 @@
  import java.util.*;
  import java.sql.*;
  import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
  
 public class ManageUsersFrame extends javax.swing.JFrame {
 
@@ -21,7 +23,7 @@ public class ManageUsersFrame extends javax.swing.JFrame {
      * Creates new form ManageUsersFrame
      */
      
-    public ManageUsersFrame() throws SQLException, IOException, java.lang.ClassNotFoundException 
+    public ManageUsersFrame() throws SQLException, IOException, ClassNotFoundException
     {
         initComponents();
         setTitle("Manage Users View");
@@ -166,42 +168,47 @@ public class ManageUsersFrame extends javax.swing.JFrame {
     
     
     
-    public DefaultTableModel buildTableModel(ResultSet rs) throws SQLException
+    public DefaultTableModel buildTableModel(ResultSet rs)
    {
 
-       ResultSetMetaData metaData = rs.getMetaData();
-   
-       // names of columns
-       Vector<String> columnNames = new Vector<String>();
-       int columnCount = metaData.getColumnCount();
-       for (int column = 1; column <= columnCount; column++)
-       {
-           columnNames.add(metaData.getColumnName(column));
-       }
-   
-       // data of the table
-       Vector<Vector<Object>> data = new Vector<Vector<Object>>();
-       
-       while (rs.next()) 
-       {
-           Vector<Object> vector = new Vector<Object>();
-           for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) 
-           {
-               vector.add(rs.getObject(columnIndex));
-           }
-           
-           data.add(vector);
-       }
-   
-       return new DefaultTableModel(data, columnNames);
-
-   } //end of buildTableModel()
+        try {
+            ResultSetMetaData metaData = rs.getMetaData();
+            
+            // names of columns
+            Vector<String> columnNames = new Vector<String>();
+            int columnCount = metaData.getColumnCount();
+            for (int column = 1; column <= columnCount; column++)
+            {
+                columnNames.add(metaData.getColumnName(column));
+            }
+            
+            // data of the table
+            Vector<Vector<Object>> data = new Vector<Vector<Object>>();
+            
+            while (rs.next())
+            {
+                Vector<Object> vector = new Vector<Object>();
+                for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++)
+                {
+                    vector.add(rs.getObject(columnIndex));
+                }
+                
+                data.add(vector);
+            }
+            
+            return new DefaultTableModel(data, columnNames);
+        } //end of buildTableModel()
+        catch (SQLException ex) {
+            Logger.getLogger(ManageUsersFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+   }
 
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) throws SQLException, IOException, java.lang.ClassNotFoundException
+    public static void main(String args[])
     {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -258,7 +265,7 @@ public class ManageUsersFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonGoBackActionPerformed
     
 
- private void buttonDeleteActionPerformed(java.awt.event.ActionEvent evt) throws SQLException, IOException, java.lang.ClassNotFoundException
+ private void buttonDeleteActionPerformed(java.awt.event.ActionEvent evt)
  {
      //tableCashiers
      DefaultTableModel model = (DefaultTableModel) tableCashiers.getModel();
@@ -268,15 +275,23 @@ public class ManageUsersFrame extends javax.swing.JFrame {
        JOptionPane.showMessageDialog(null,  message, "Warning", JOptionPane.WARNING_MESSAGE);
 
         for (int i = 0; i < rows.length; i++) {
-            model.removeRow(rows[i] - i);
-            String username2Delete = (String) tableCashiers.getModel().getValueAt(rows[i], 0);
-            mg.removeEmployee(username2Delete);
+         try {
+             model.removeRow(rows[i] - i);
+             String username2Delete = (String) tableCashiers.getModel().getValueAt(rows[i], 0);
+             mg.removeEmployee(username2Delete);
+         } catch (SQLException ex) {
+             Logger.getLogger(ManageUsersFrame.class.getName()).log(Level.SEVERE, null, ex);
+         } catch (IOException ex) {
+             Logger.getLogger(ManageUsersFrame.class.getName()).log(Level.SEVERE, null, ex);
+         } catch (ClassNotFoundException ex) {
+             Logger.getLogger(ManageUsersFrame.class.getName()).log(Level.SEVERE, null, ex);
+         }
         }
         
  }//end of buttonDeleteAction
     
 
-private void buttonUpdateActionPerformed(java.awt.event.ActionEvent evt) throws SQLException, IOException, java.lang.ClassNotFoundException
+private void buttonUpdateActionPerformed(java.awt.event.ActionEvent evt) 
  {
      //tableCashiers
      DefaultTableModel model = (DefaultTableModel) tableCashiers.getModel();
@@ -286,34 +301,42 @@ private void buttonUpdateActionPerformed(java.awt.event.ActionEvent evt) throws 
        //JOptionPane.showMessageDialog(null,  message, "Warning", JOptionPane.WARNING_MESSAGE);
 
         for (int i = 0; i < rows.length; i++) {
-           // model.removeRow(rows[i] - i);
-            String username = (String) tableCashiers.getModel().getValueAt(rows[i], 0);
-            String name = (String) tableCashiers.getModel().getValueAt(rows[i], 1);
-            String role = (String) tableCashiers.getModel().getValueAt(rows[i], 2);
-            String pass = (String) tableCashiers.getModel().getValueAt(rows[i], 3);
-            
-            int r = mg.editEmployee(username, name, role, pass);
-            
-            switch(r)
-            {
-               case 2: 
-                  JOptionPane.showMessageDialog(null,  "Improper name entry!", "ERROR", JOptionPane.ERROR_MESSAGE);
-                  break;
-            
-               case 3:
-                  JOptionPane.showMessageDialog(null,  "Invalid role entry!", "ERROR", JOptionPane.ERROR_MESSAGE);
-                  break;
-
-               case 1:
-                  JOptionPane.showMessageDialog(null,  "User not found!", "ERROR", JOptionPane.ERROR_MESSAGE);
-                  break;
-                
-               case 4:
-                  JOptionPane.showMessageDialog(null,  "Improper password entry!", "ERROR", JOptionPane.ERROR_MESSAGE);
-                  break;     
-            }
-            
-            System.out.println("Update complete.");
+         try {
+             // model.removeRow(rows[i] - i);
+             String username = (String) tableCashiers.getModel().getValueAt(rows[i], 0);
+             String name = (String) tableCashiers.getModel().getValueAt(rows[i], 1);
+             String role = (String) tableCashiers.getModel().getValueAt(rows[i], 2);
+             String pass = (String) tableCashiers.getModel().getValueAt(rows[i], 3);
+             
+             int r = mg.editEmployee(username, name, role, pass);
+             
+             switch(r)
+             {
+                 case 2:
+                     JOptionPane.showMessageDialog(null,  "Improper name entry!", "ERROR", JOptionPane.ERROR_MESSAGE);
+                     break;
+                     
+                 case 3:
+                     JOptionPane.showMessageDialog(null,  "Invalid role entry!", "ERROR", JOptionPane.ERROR_MESSAGE);
+                     break;
+                     
+                 case 1:
+                     JOptionPane.showMessageDialog(null,  "User not found!", "ERROR", JOptionPane.ERROR_MESSAGE);
+                     break;
+                     
+                 case 4:
+                     JOptionPane.showMessageDialog(null,  "Improper password entry!", "ERROR", JOptionPane.ERROR_MESSAGE);
+                     break;
+             }
+             
+             System.out.println("Update complete.");
+         } catch (SQLException ex) {
+             Logger.getLogger(ManageUsersFrame.class.getName()).log(Level.SEVERE, null, ex);
+         } catch (IOException ex) {
+             Logger.getLogger(ManageUsersFrame.class.getName()).log(Level.SEVERE, null, ex);
+         } catch (ClassNotFoundException ex) {
+             Logger.getLogger(ManageUsersFrame.class.getName()).log(Level.SEVERE, null, ex);
+         }
         }
         
         
