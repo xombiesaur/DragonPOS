@@ -217,7 +217,7 @@
         <Property name="text" type="java.lang.String" value="Process"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonProcess1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonProcessActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
