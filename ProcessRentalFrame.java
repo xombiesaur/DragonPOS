@@ -8,6 +8,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.StyledDocument;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -82,6 +85,11 @@ public class ProcessRentalFrame extends javax.swing.JFrame {
         buttonRemove.setText("Remove");
 
         buttonProcess.setText("Process");
+        buttonProcess.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonProcessActionPerformed(evt);
+            }
+        });
 
         jScrollPane2.setViewportView(textPaneReceipt);
 
@@ -216,13 +224,7 @@ public class ProcessRentalFrame extends javax.swing.JFrame {
             }
         });
     }//GEN-LAST:event_buttonGoBackActionPerformed
-    
 
-
-    
-    
-    
-    
 
     private void textFieldItemIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldItemIDActionPerformed
         // TODO add your handling code here:
@@ -233,6 +235,52 @@ public class ProcessRentalFrame extends javax.swing.JFrame {
        	rentalT.addItemByID(textFieldItemID.getText(),Integer.parseInt(textFieldDuration.getText()), Integer.parseInt(textFieldQuantity.getText()));
         updateLineItemDisplay();
     }//GEN-LAST:event_buttonAddActionPerformed
+
+    private void buttonProcessActionPerformed(java.awt.event.ActionEvent evt) {                                              
+        // TODO add your handling code here:
+                int numOfRows = tableItems.getRowCount();
+        TableModel tableModel = tableItems.getModel();
+        float totalCost = 0.0f;
+        textPaneReceipt.setText("");
+        StyledDocument doc = textPaneReceipt.getStyledDocument();
+        try {
+            doc.insertString(doc.getLength(),
+                    String.format("%-20s%20s\n\n", "Item:", "TotalCost:"),
+                    null);
+        } catch (BadLocationException ex) {
+            Logger.getLogger(ProcessSaleFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        for (int index = 0; index < numOfRows; index++) {
+            String itemName = (String) tableModel.getValueAt(index, 1);
+            int quantity = (int) tableModel.getValueAt(index, 2);
+            float unitCost = (((Double) tableModel.getValueAt(index, 3))
+                    .floatValue()) / quantity;
+            try {
+                doc.insertString(doc.getLength(),
+                        String.format("%-20s%5s%10.2f\n", itemName, "(" + quantity
+                                + ")",
+                                unitCost),
+                        null);
+            } catch (BadLocationException ex) {
+                Logger.getLogger(ProcessSaleFrame.class.getName()).log(
+                        Level.SEVERE, null, ex);
+            }
+            totalCost += quantity * unitCost;
+        }
+        try {
+            doc.insertString(doc.getLength(),
+                    String.format("\n%20s%8.2f\n", "FinalPayment:", totalCost),
+                    null);
+        } catch (BadLocationException ex) {
+            Logger.getLogger(ProcessSaleFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        final float finalPayment = totalCost;
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new PaymentGUI(finalPayment).setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_buttonProcessActionPerformed
 
     /**
      * @param args the command line arguments
