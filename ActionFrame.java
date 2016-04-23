@@ -1,3 +1,7 @@
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -149,7 +153,15 @@ public class ActionFrame extends javax.swing.JFrame {
          this.dispose();
          java.awt.EventQueue.invokeLater(new Runnable() {
              public void run() {
-                 new ManageUsersFrame().setVisible(true);
+                 try {
+                     new ManageUsersFrame().setVisible(true);
+                 } catch (SQLException ex) {
+                     Logger.getLogger(ActionFrame.class.getName()).log(Level.SEVERE, null, ex);
+                 } catch (IOException ex) {
+                     Logger.getLogger(ActionFrame.class.getName()).log(Level.SEVERE, null, ex);
+                 } catch (ClassNotFoundException ex) {
+                     Logger.getLogger(ActionFrame.class.getName()).log(Level.SEVERE, null, ex);
+                 }
              }
          });
     }//GEN-LAST:event_buttonManageUsersActionPerformed
@@ -234,7 +246,7 @@ public class ActionFrame extends javax.swing.JFrame {
      */
     
     
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JButton buttonLogout;
     private javax.swing.JButton buttonManageUsers;
     private javax.swing.JButton buttonProcessRental;

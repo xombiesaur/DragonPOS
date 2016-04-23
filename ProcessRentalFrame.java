@@ -2,6 +2,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -190,7 +194,15 @@ public class ProcessRentalFrame extends javax.swing.JFrame {
         this.dispose();
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ManageUsersFrame().setVisible(true);
+                try {
+                    new ManageUsersFrame().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(ProcessRentalFrame.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(ProcessRentalFrame.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(ProcessRentalFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }//GEN-LAST:event_buttonManageUsersActionPerformed
