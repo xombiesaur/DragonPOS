@@ -3,6 +3,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -118,7 +120,7 @@ public class ProcessSaleFrame extends javax.swing.JFrame {
         buttonProcess1.setText("Process");
         buttonProcess1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonProcess1ActionPerformed(evt);
+                buttonProcessActionPerformed(evt);
             }
         });
 
@@ -198,7 +200,15 @@ public class ProcessSaleFrame extends javax.swing.JFrame {
          this.dispose();
          java.awt.EventQueue.invokeLater(new Runnable() {
              public void run() {
-                 new ManageUsersFrame().setVisible(true);
+                 try {
+                     new ManageUsersFrame().setVisible(true);
+                 } catch (SQLException ex) {
+                     Logger.getLogger(ProcessSaleFrame.class.getName()).log(Level.SEVERE, null, ex);
+                 } catch (IOException ex) {
+                     Logger.getLogger(ProcessSaleFrame.class.getName()).log(Level.SEVERE, null, ex);
+                 } catch (ClassNotFoundException ex) {
+                     Logger.getLogger(ProcessSaleFrame.class.getName()).log(Level.SEVERE, null, ex);
+                 }
              }
          });
     }//GEN-LAST:event_buttonManageUsersActionPerformed
@@ -225,7 +235,7 @@ public class ProcessSaleFrame extends javax.swing.JFrame {
         updateLineItemDisplay();
     }//GEN-LAST:event_buttonAddActionPerformed
 
-    private void buttonProcess1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonProcess1ActionPerformed
+    private void buttonProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonProcessActionPerformed
         // TODO add your handling code here:
         int numOfRows = tableItems.getRowCount();
         TableModel tableModel = tableItems.getModel();
@@ -265,10 +275,10 @@ public class ProcessSaleFrame extends javax.swing.JFrame {
         final float finalPayment = totalCost;
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PaymentGUI(finalPayment).setVisible(true);
+                new PaymentGUI(finalPayment, saleT).setVisible(true);
             }
         });
-    }//GEN-LAST:event_buttonProcess1ActionPerformed
+    }//GEN-LAST:event_buttonProcessActionPerformed
 
     /**
      * @param args the command line arguments

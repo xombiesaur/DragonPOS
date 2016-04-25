@@ -22,10 +22,11 @@ public class RentalLineItem {
         this.duration = duration;
         this.quantity = quantity;
         this.price = price;
+        this.description = description;
     }
 
     public double getSubtotal() {
-        return duration * price;
+        return duration * quantity * price;
     }
     
     public String getItemID(){

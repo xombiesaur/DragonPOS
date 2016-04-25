@@ -20,6 +20,7 @@ public class PaymentGUI extends JFrame {
 	private JTextField textField;
         private float totalCost;
         JLabel lblEnterCreditNumber;
+        private SalesTransaction sale;
 
 	/**
 	 * Launch the application.
@@ -28,7 +29,7 @@ public class PaymentGUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PaymentGUI window = new PaymentGUI(0.0f);
+					PaymentGUI window = new PaymentGUI(0.0f, new SalesTransaction());
 					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,11 +42,16 @@ public class PaymentGUI extends JFrame {
 	 * Create the application.
      * @param totalCost
 	 */
-	public PaymentGUI(float totalCost) {
+	public PaymentGUI(float totalCost, SalesTransaction sale) {
 		initialize();
                 this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 this.totalCost = totalCost;
+<<<<<<< HEAD
                 txtAmount.setText(" "+totalCost+" ");
+                this.sale = sale;
+=======
+                txtAmount.setText(String.format("%.2f", totalCost));
+>>>>>>> origin/master
 	}
 
 	/**
@@ -92,7 +98,9 @@ public class PaymentGUI extends JFrame {
 		
 		JButton btnPay = new JButton("Pay");
 		btnPay.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent arg0){
+				Pay pay = new Pay(sale, txtAmount.getText());
+				pay.complete();
 				JOptionPane.showMessageDialog(null, "Amount $"+txtAmount.getText()+" has been paid");
 				txtAmount.setText("");
 				textField.setText("");

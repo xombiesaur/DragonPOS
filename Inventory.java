@@ -35,6 +35,25 @@ public class Inventory {
 		}
 	}
 	
+		public static int itemInInventory(String itemID){
+		try{
+			Statement stmt = null;
+			stmt = conn.createStatement();
+			String sql;
+			sql = "SELECT * FROM item WHERE itemID = '"+itemID+"'";
+			ResultSet rs = stmt.executeQuery(sql);
+			if(!rs.next()){
+        return -1;
+      }
+      else{
+        return rs.getInt("currentInventory");
+      }
+		}catch(Exception ex){
+      System.out.println("error gettng info: "+ex.toString());
+      return -2;
+		}
+	}
+	
 	
 	public String getSaleItemNameFromID(String itemID){
 		try{
@@ -88,15 +107,18 @@ public class Inventory {
 			String sql;
 			sql = "SELECT isRental FROM item WHERE itemID = '"+itemID+"'";
 			ResultSet rs = stmt.executeQuery(sql);
-			int isARental;
-			isARental = rs.getInt("isRental");
+			int isARental = -1;
+			while (rs.next()){
+				isARental = rs.getInt("isRental");
+			}
+			//System.out.println(isARental);
 			if (isARental > 0 ){
 				return true;
 			}
 			return false;
 		}catch(Exception ex){
-                        System.out.println("error gettng info: "+ex.toString());
-                        return false;
+       System.out.println("error gettng info: "+ex.toString());
+       return false;
 		}
 	}
 //get intem info for rental
