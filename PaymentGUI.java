@@ -46,16 +46,10 @@ public class PaymentGUI extends JFrame {
 		initialize();
                 this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 this.totalCost = totalCost;
-<<<<<<< HEAD
-<<<<<<< HEAD
                 txtAmount.setText(" "+totalCost+" ");
                 this.sale = sale;
-=======
                 txtAmount.setText(String.format("%.2f", totalCost));
->>>>>>> origin/master
-=======
                 txtAmount.setText(String.format("%.2f", totalCost));
->>>>>>> origin/master
 	}
 
 	/**
