@@ -52,6 +52,15 @@ public class PaymentGUI extends JFrame {
                 txtAmount.setText(String.format("%.2f", totalCost));
 	}
 
+	public PaymentGUI(float totalCost) {
+		initialize();
+                this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                this.totalCost = totalCost;
+                txtAmount.setText(" "+totalCost+" ");
+                txtAmount.setText(String.format("%.2f", totalCost));
+                txtAmount.setText(String.format("%.2f", totalCost));
+	}
+
 	/**
 	 * Initialize the contents of the frame.
 	 */
