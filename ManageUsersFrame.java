@@ -22,10 +22,13 @@ public class ManageUsersFrame extends javax.swing.JFrame {
     /**
      * Creates new form ManageUsersFrame
      */
+    
+    private EmployeeManagement mg;
      
     public ManageUsersFrame() throws SQLException, IOException, ClassNotFoundException
     {
         initComponents();
+        mg = new EmployeeManagement();
         setTitle("Manage Users View");
         this.setLocationRelativeTo(null);
     }
@@ -37,95 +40,40 @@ public class ManageUsersFrame extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() throws SQLException, IOException, java.lang.ClassNotFoundException
-    {
+    private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-       // tableCashiers = new javax.swing.JTable();
+        tableCashiers = new javax.swing.JTable();
         buttonDelete = new javax.swing.JButton();
         buttonUpdate = new javax.swing.JButton();
         buttonGoBack = new javax.swing.JButton();
-        mg = new EmployeeManagement();
-        
-        
-        Dimension dim=Toolkit.getDefaultToolkit().getScreenSize();
-        int framewidth=this.getSize().width;//get the width of the frame
-        int frameheigth=this.getSize().height; //get the heigth of the frame
-        int framelocationX=(dim.width-framewidth)/2; 
-        int framelocationY=(dim.height-frameheigth)/2;
-        this.setLocation(framelocationX,framelocationY);
-        
-        setTitle("Manage Users View");
-        
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        
-        
-            Statement s = con.createStatement();
-             ResultSet result = null;
-             
-             String q = "select * from users";
-             result = s.executeQuery(q);
-   
-            // It creates and displays the table
-              tableCashiers = new JTable(buildTableModel(result));
-              tableCashiers.setFillsViewportHeight( true );
+        buttonInsert = new javax.swing.JButton();
 
-        
-        
-        /*tableCashiers.setModel(new javax.swing.table.DefaultTableModel(
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        tableCashiers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Username", "Name", "Role", "Password"
+                "CashierID", "CashierName"
             }
         ));
-        */
         jScrollPane1.setViewportView(tableCashiers);
 
         buttonDelete.setText("Delete");
-        buttonDelete.addActionListener(new java.awt.event.ActionListener() 
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                try
-                {
-                  buttonDeleteActionPerformed(evt);
-                }
-                
-                catch(Exception e)
-                {
-                  e.printStackTrace();
-                }
-            }
-        }); 
 
         buttonUpdate.setText("Update");
-        buttonUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-               System.out.println("");
-               try{
-                buttonUpdateActionPerformed(evt);
-               }
-               catch(Exception e)
-               {
-                  e.printStackTrace();
-               }
-            }
-        });
-        
-        
-        
+
         buttonGoBack.setText("Go Back");
-        buttonGoBack.addActionListener(new java.awt.event.ActionListener() {
+
+        buttonInsert.setText("Insert");
+        buttonInsert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-               System.out.println("");
-                buttonGoBackActionPerformed(evt);
+                buttonInsertActionPerformed(evt);
             }
         });
 
@@ -139,7 +87,8 @@ public class ManageUsersFrame extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(buttonUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
-                            .addComponent(buttonDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(buttonDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(buttonInsert, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(buttonGoBack))
@@ -152,6 +101,8 @@ public class ManageUsersFrame extends javax.swing.JFrame {
                 .addComponent(buttonDelete)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buttonUpdate)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonInsert)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(buttonGoBack))
             .addGroup(layout.createSequentialGroup()
@@ -161,8 +112,6 @@ public class ManageUsersFrame extends javax.swing.JFrame {
         );
 
         pack();
-        
-        
     }// </editor-fold>//GEN-END:initComponents
     
     
@@ -263,6 +212,11 @@ public class ManageUsersFrame extends javax.swing.JFrame {
             }
         });
     }//GEN-LAST:event_buttonGoBackActionPerformed
+
+    private void buttonInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonInsertActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_buttonInsertActionPerformed
     
 
  private void buttonDeleteActionPerformed(java.awt.event.ActionEvent evt)
@@ -351,11 +305,9 @@ private void buttonUpdateActionPerformed(java.awt.event.ActionEvent evt)
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonDelete;
     private javax.swing.JButton buttonGoBack;
+    private javax.swing.JButton buttonInsert;
     private javax.swing.JButton buttonUpdate;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tableCashiers;
-    private DBConnection temp = new DBConnection();
-    private Connection con = temp.getConnection();
-    private EmployeeManagement mg;
     // End of variables declaration//GEN-END:variables
 }
