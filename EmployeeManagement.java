@@ -22,6 +22,8 @@ public class EmployeeManagement
       Statement s = con.createStatement();
       String q = "select username from users where username = '"+username +"'";
       ResultSet result = s.executeQuery(q);
+      role = role.charAt(0) + "";
+      role = role.toUpperCase();
             
       if(result.next()) // username already exists.
       {
@@ -50,7 +52,8 @@ public class EmployeeManagement
            return 4; //invalid password.
          }
          
-         //update the users database.         
+         //update the users database.
+                 
          q = "insert into users values ('" + username +"','" + name + "','" + role + "','" + password + "')";
          //result = s.executeQuery(q);
          //update = con.prepareStatement(q);
@@ -75,6 +78,8 @@ public class EmployeeManagement
       Statement s = con.createStatement();
       String q = "select username from users where username = '"+username+"'";
       ResultSet result = s.executeQuery(q);
+      role = role.charAt(0) + "";
+      role = role.toUpperCase();
       
       if(!result.next()) //no username found.
       {

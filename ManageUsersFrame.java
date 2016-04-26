@@ -22,13 +22,10 @@ public class ManageUsersFrame extends javax.swing.JFrame {
     /**
      * Creates new form ManageUsersFrame
      */
-    
-    private EmployeeManagement mg;
      
     public ManageUsersFrame() throws SQLException, IOException, ClassNotFoundException
     {
         initComponents();
-        mg = new EmployeeManagement();
         setTitle("Manage Users View");
         this.setLocationRelativeTo(null);
     }
@@ -40,43 +37,108 @@ public class ManageUsersFrame extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents() throws SQLException, IOException, java.lang.ClassNotFoundException
+    {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableCashiers = new javax.swing.JTable();
+       // tableCashiers = new javax.swing.JTable();
         buttonDelete = new javax.swing.JButton();
         buttonUpdate = new javax.swing.JButton();
         buttonGoBack = new javax.swing.JButton();
         buttonInsert = new javax.swing.JButton();
-
+        mg = new EmployeeManagement();
+        
+        
+        Dimension dim=Toolkit.getDefaultToolkit().getScreenSize();
+        int framewidth=this.getSize().width;//get the width of the frame
+        int frameheigth=this.getSize().height; //get the heigth of the frame
+        int framelocationX=(dim.width-framewidth)/2; 
+        int framelocationY=(dim.height-frameheigth)/2;
+        this.setLocation(framelocationX,framelocationY);
+        
+        setTitle("Manage Users View");
+        
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        
+        
+             Statement s = con.createStatement();
+             ResultSet result = null;
+             
+             String q = "select * from users";
+             result = s.executeQuery(q);
+   
+            // It creates and displays the table
+              tableCashiers = new JTable(buildTableModel(result));
+              tableCashiers.setFillsViewportHeight( true );
 
-        tableCashiers.setModel(new javax.swing.table.DefaultTableModel(
+        
+        
+        /*tableCashiers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "CashierID", "CashierName"
+                "Username", "Name", "Role", "Password"
             }
         ));
-        jScrollPane1.setViewportView(tableCashiers);
-
-        buttonDelete.setText("Delete");
-
-        buttonUpdate.setText("Update");
-
-        buttonGoBack.setText("Go Back");
-
-        buttonInsert.setText("Insert");
-        buttonInsert.addActionListener(new java.awt.event.ActionListener() {
+        */
+        
+         buttonInsert.setText("Insert");
+         buttonInsert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonInsertActionPerformed(evt);
             }
         });
 
+        jScrollPane1.setViewportView(tableCashiers);
+
+        buttonDelete.setText("Delete");
+        buttonDelete.addActionListener(new java.awt.event.ActionListener() 
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                try
+                {
+                  buttonDeleteActionPerformed(evt);
+                }
+                
+                catch(Exception e)
+                {
+                  e.printStackTrace();
+                }
+            }
+        }); 
+
+        buttonUpdate.setText("Update");
+        buttonUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+               System.out.println("");
+               try{
+                buttonUpdateActionPerformed(evt);
+               }
+               catch(Exception e)
+               {
+                  e.printStackTrace();
+               }
+            }
+        });
+        
+        
+        
+        buttonGoBack.setText("Go Back");
+        buttonGoBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+               System.out.println("");
+                buttonGoBackActionPerformed(evt);
+            }
+        });
+
+        
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -112,8 +174,7 @@ public class ManageUsersFrame extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
-    
+    }// </editor-fold>//GEN-END:initComponents    
     
     
     
@@ -199,7 +260,7 @@ public class ManageUsersFrame extends javax.swing.JFrame {
         });
     }
     
-    
+   
     private void buttonGoBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGoBackActionPerformed
         // TODO add your handling code here:
         System.out.println("!");
@@ -212,11 +273,6 @@ public class ManageUsersFrame extends javax.swing.JFrame {
             }
         });
     }//GEN-LAST:event_buttonGoBackActionPerformed
-
-    private void buttonInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonInsertActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_buttonInsertActionPerformed
     
 
  private void buttonDeleteActionPerformed(java.awt.event.ActionEvent evt)
@@ -230,8 +286,9 @@ public class ManageUsersFrame extends javax.swing.JFrame {
 
         for (int i = 0; i < rows.length; i++) {
          try {
+             String username2Delete = (String) tableCashiers.getModel().getValueAt(rows[i] -i, 0);
              model.removeRow(rows[i] - i);
-             String username2Delete = (String) tableCashiers.getModel().getValueAt(rows[i], 0);
+            System.out.println(username2Delete);
              mg.removeEmployee(username2Delete);
          } catch (SQLException ex) {
              Logger.getLogger(ManageUsersFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -243,11 +300,23 @@ public class ManageUsersFrame extends javax.swing.JFrame {
         }
         
  }//end of buttonDeleteAction
+ 
+ private void buttonInsertActionPerformed(java.awt.event.ActionEvent evt) 
+ {
+    this.setVisible(false);
+    new InsertEmployeeFrame().setVisible(true);
+ 
+ }
+ 
+ 
+ 
+ 
     
 
 private void buttonUpdateActionPerformed(java.awt.event.ActionEvent evt) 
  {
      //tableCashiers
+     boolean bool = true;
      DefaultTableModel model = (DefaultTableModel) tableCashiers.getModel();
         int[] rows = tableCashiers.getSelectedRows();
         //int length = rows.length;
@@ -268,20 +337,25 @@ private void buttonUpdateActionPerformed(java.awt.event.ActionEvent evt)
              {
                  case 2:
                      JOptionPane.showMessageDialog(null,  "Improper name entry!", "ERROR", JOptionPane.ERROR_MESSAGE);
+                     bool = false;
                      break;
                      
                  case 3:
                      JOptionPane.showMessageDialog(null,  "Invalid role entry!", "ERROR", JOptionPane.ERROR_MESSAGE);
+                     bool = false;
                      break;
                      
                  case 1:
                      JOptionPane.showMessageDialog(null,  "User not found!", "ERROR", JOptionPane.ERROR_MESSAGE);
+                     bool = false;
                      break;
                      
                  case 4:
                      JOptionPane.showMessageDialog(null,  "Improper password entry!", "ERROR", JOptionPane.ERROR_MESSAGE);
+                     bool = false;
                      break;
              }
+             
              
              System.out.println("Update complete.");
          } catch (SQLException ex) {
@@ -291,7 +365,21 @@ private void buttonUpdateActionPerformed(java.awt.event.ActionEvent evt)
          } catch (ClassNotFoundException ex) {
              Logger.getLogger(ManageUsersFrame.class.getName()).log(Level.SEVERE, null, ex);
          }
-        }
+         
+         if(rows.length>1 && bool)
+         {
+            String tmp = rows.length + " ";
+            tmp += "rows updated successfully.";
+            JOptionPane.showMessageDialog(null, tmp, "Updated Successfully", JOptionPane.PLAIN_MESSAGE);
+         }
+         
+         else if(rows.length == 1 && bool)
+         {
+            String tmp = rows.length + " ";
+            tmp += "row updated successfully.";
+            JOptionPane.showMessageDialog(null, tmp, "Updated Successfully", JOptionPane.PLAIN_MESSAGE);
+         }
+       }
         
         
  }//end of buttonUpdateAction
@@ -305,9 +393,12 @@ private void buttonUpdateActionPerformed(java.awt.event.ActionEvent evt)
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonDelete;
     private javax.swing.JButton buttonGoBack;
-    private javax.swing.JButton buttonInsert;
     private javax.swing.JButton buttonUpdate;
+    private javax.swing.JButton buttonInsert;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tableCashiers;
+    private DBConnection temp = new DBConnection();
+    private Connection con = temp.getConnection();
+    private EmployeeManagement mg;
     // End of variables declaration//GEN-END:variables
 }
