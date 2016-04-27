@@ -12,6 +12,7 @@ public class LoginDB {
     public LoginDB(){
 		DBConnection temp = new DBConnection();
 		conn = temp.getConnection();
+  
 	}	
 
     public String getPassword(String username){
@@ -37,7 +38,9 @@ public class LoginDB {
 			System.out.println("error gettng password: "+ex.toString());
 			return null;
 		}
-    } 
+    }
+    
+   
 
 } //*/
 
