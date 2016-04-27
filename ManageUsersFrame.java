@@ -71,7 +71,7 @@ public class ManageUsersFrame extends javax.swing.JFrame {
               tableCashiers = new JTable(buildTableModel(result));
               tableCashiers.setFillsViewportHeight( true );
 
-        
+               s.close();
         
         /*tableCashiers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -322,7 +322,7 @@ private void buttonUpdateActionPerformed(java.awt.event.ActionEvent evt)
         //int length = rows.length;
         //String message = "You are about affect " + length + " entries.";
        //JOptionPane.showMessageDialog(null,  message, "Warning", JOptionPane.WARNING_MESSAGE);
-
+        int countSuccessful = rows.length; //Counts the number of successful updates.
         for (int i = 0; i < rows.length; i++) {
          try {
              // model.removeRow(rows[i] - i);
@@ -331,33 +331,49 @@ private void buttonUpdateActionPerformed(java.awt.event.ActionEvent evt)
              String role = (String) tableCashiers.getModel().getValueAt(rows[i], 2);
              String pass = (String) tableCashiers.getModel().getValueAt(rows[i], 3);
              
+             String rowMessage = "Selected Row #" + (i+1) + ": ";
              int r = mg.editEmployee(username, name, role, pass);
              
              switch(r)
              {
                  case 2:
-                     JOptionPane.showMessageDialog(null,  "Improper name entry!", "ERROR", JOptionPane.ERROR_MESSAGE);
+                     rowMessage +="Improper name entry!";
+                     JOptionPane.showMessageDialog(null,  rowMessage, "ERROR", JOptionPane.ERROR_MESSAGE);
+                     countSuccessful--;
                      bool = false;
                      break;
                      
                  case 3:
-                     JOptionPane.showMessageDialog(null,  "Invalid role entry!", "ERROR", JOptionPane.ERROR_MESSAGE);
+                     rowMessage += "Invalid role entry!";
+                     JOptionPane.showMessageDialog(null, rowMessage, "ERROR", JOptionPane.ERROR_MESSAGE);
+                     countSuccessful--;
                      bool = false;
                      break;
                      
                  case 1:
-                     JOptionPane.showMessageDialog(null,  "User not found!", "ERROR", JOptionPane.ERROR_MESSAGE);
+                     rowMessage += "You cannot change the username!";
+                     JOptionPane.showMessageDialog(null, rowMessage, "ERROR", JOptionPane.ERROR_MESSAGE);
+                     countSuccessful--;
                      bool = false;
                      break;
                      
                  case 4:
-                     JOptionPane.showMessageDialog(null,  "Improper password entry!", "ERROR", JOptionPane.ERROR_MESSAGE);
+                     rowMessage += "Improper password entry!";
+                     JOptionPane.showMessageDialog(null,  rowMessage, "ERROR", JOptionPane.ERROR_MESSAGE);
+                     countSuccessful--;
+                     bool = false;
+                     break;
+                 
+                 case 5:
+                     rowMessage += "Improper username specified!";
+                     JOptionPane.showMessageDialog(null, rowMessage, "ERROR", JOptionPane.ERROR_MESSAGE);
+                     countSuccessful--;
                      bool = false;
                      break;
              }
              
              
-             System.out.println("Update complete.");
+             //System.out.println("Update complete.");
          } catch (SQLException ex) {
              Logger.getLogger(ManageUsersFrame.class.getName()).log(Level.SEVERE, null, ex);
          } catch (IOException ex) {
@@ -366,19 +382,44 @@ private void buttonUpdateActionPerformed(java.awt.event.ActionEvent evt)
              Logger.getLogger(ManageUsersFrame.class.getName()).log(Level.SEVERE, null, ex);
          }
          
-         if(rows.length>1 && bool)
+         /*if(rows.length>1 && bool)
          {
             String tmp = rows.length + " ";
             tmp += "rows updated successfully.";
             JOptionPane.showMessageDialog(null, tmp, "Updated Successfully", JOptionPane.PLAIN_MESSAGE);
          }
+         */
          
-         else if(rows.length == 1 && bool)
+        /* else if(rows.length == 1 && bool)
          {
             String tmp = rows.length + " ";
             tmp += "row updated successfully.";
             JOptionPane.showMessageDialog(null, tmp, "Updated Successfully", JOptionPane.PLAIN_MESSAGE);
          }
+         */
+       } //end of for loop
+       
+       
+       try
+       {
+         
+         if(countSuccessful>0)
+         {
+            String tmp = countSuccessful +" rows updated successfully.";
+            JOptionPane.showMessageDialog(null, tmp, "Updated Successfully", JOptionPane.PLAIN_MESSAGE);
+         }
+         
+         else
+         {
+            String tmp = "No row was updated.";
+            JOptionPane.showMessageDialog(null, tmp, "Update Unsuccessful", JOptionPane.PLAIN_MESSAGE);
+         }
+         setVisible(false);
+         new ManageUsersFrame().setVisible(true);
+       }
+       catch(Exception e)
+       {
+         e.printStackTrace();
        }
         
         

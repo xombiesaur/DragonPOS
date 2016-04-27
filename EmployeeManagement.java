@@ -19,6 +19,7 @@ public class EmployeeManagement
    
    public int addEmployee(String username, String name, String role, String password) throws SQLException, IOException, java.lang.ClassNotFoundException
    {
+     //con = temp.getConnection();
       Statement s = con.createStatement();
       String q = "select username from users where username = '"+username +"'";
       ResultSet result = s.executeQuery(q);
@@ -59,16 +60,13 @@ public class EmployeeManagement
          //update = con.prepareStatement(q);
         // update.executeUpdate();
         
-        s.executeUpdate(q);
-         
+        s.executeUpdate(q);     
+        s.close();    
          return 0; //update successful.
       }
    }//end of addEmployee()
    
 
-      
-      
-      
    
    
    
@@ -78,6 +76,7 @@ public class EmployeeManagement
       Statement s = con.createStatement();
       String q = "select username from users where username = '"+username+"'";
       ResultSet result = s.executeQuery(q);
+ 
       role = role.charAt(0) + "";
       role = role.toUpperCase();
       
@@ -88,6 +87,8 @@ public class EmployeeManagement
       
       else //username found so we're ready to make changes.
       {
+            
+         
          if(name.length() > 45 || (name.length() == 0))
          {
             return 2; //name length too big.
@@ -108,11 +109,13 @@ public class EmployeeManagement
            return 4; //invalid password.
          }
          
+         
          //update the users database.         
          q = "update users set name = '" + name +"', role = '" + role + "', pass = '" + password + "' where username = '" + username +"'";
          update = con.prepareStatement(q);
          update.executeUpdate();
-         //con.commit();
+         s.close();
+        // con.close();
         // result = s.executeQuery(q);
       } 
          return 0; //update successful.
@@ -137,6 +140,7 @@ public class EmployeeManagement
          update = con.prepareStatement(q);
          update.executeUpdate();
          System.out.println("Delete successful.");
+         s.close();
       }
       
       return 0; //delete successful.
