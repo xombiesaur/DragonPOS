@@ -243,6 +243,7 @@ public class ProcessRentalFrame extends javax.swing.JFrame {
     
     private void buttonRemoveActionPerformed(java.awt.event.ActionEvent evt){
     		rentalT.removeItem();
+    		updateLineItemDisplay();
     }
 
     private void buttonProcessActionPerformed(java.awt.event.ActionEvent evt) {                                              
@@ -262,12 +263,13 @@ public class ProcessRentalFrame extends javax.swing.JFrame {
         for (int index = 0; index < numOfRows; index++) {
             String itemName = (String) tableModel.getValueAt(index, 1);
             int quantity = (int) tableModel.getValueAt(index, 2);
-            float unitCost = (((Double) tableModel.getValueAt(index, 3))
+            int duration = (int) tableModel.getValueAt(index, 3);
+            float unitCost = (((Double) tableModel.getValueAt(index, 4))
                     .floatValue()) / quantity;
             try {
                 doc.insertString(doc.getLength(),
-                        String.format("%-20s%5s%10.2f\n", itemName, "(" + quantity
-                                + ")",
+                        String.format("%-20s%5s%5s%10.2f\n", itemName, "(" + quantity
+                                + ")", " days:" + duration,
                                 unitCost),
                         null);
             } catch (BadLocationException ex) {
@@ -279,6 +281,9 @@ public class ProcessRentalFrame extends javax.swing.JFrame {
         try {
             doc.insertString(doc.getLength(),
                     String.format("\n%20s%8.2f\n", "FinalPayment:", totalCost),
+                    null);
+            doc.insertString(doc.getLength(),
+                    String.format("All Rentals are due back 24 hrs after the last day or the full price will be charged"),
                     null);
         } catch (BadLocationException ex) {
             Logger.getLogger(ProcessSaleFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -327,19 +332,20 @@ public class ProcessRentalFrame extends javax.swing.JFrame {
     }
 
 		private void updateLineItemDisplay(){
-        Object lineItems[][] = new Object[rentalT.lines.size()][4];
+        Object lineItems[][] = new Object[rentalT.lines.size()][5];
         int i = 0;
         for(RentalLineItem item : rentalT.lines){
             lineItems[i][0] = item.getItemID();
             lineItems[i][1] = item.getItemDescription();
             lineItems[i][2] = item.getQuantity();
-            lineItems[i][3] = item.getSubtotal();
+            lineItems[i][3] = item.getDuration();
+            lineItems[i][4] = item.getSubtotal();
             i++;
         }
         tableItems.setModel(new javax.swing.table.DefaultTableModel(
             lineItems,
             new String [] {
-                "ItemID", "Name", "Quantity", "TotalCost"
+                "ItemID", "Name", "Quantity","Duration", "TotalCost"
             }
         ));
     }

@@ -48,4 +48,7 @@ public class RentalLineItem {
     public int getQuantity(){
     	return quantity;
     }
+    public int getDuration(){
+    	return duration;
+    }
 }
