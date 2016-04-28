@@ -8,13 +8,20 @@ import java.io.*;
 public class Pay{
 	SalesTransaction sale;
 	Connection con = null;
-	String c;
+	String card;
+	int cash;
 
-	public Pay(SalesTransaction sale, String c){
+	public Pay(SalesTransaction sale, String card){
 		this.sale = sale;
 		DBConnection temp = new DBConnection();
 		con = temp.getConnection();
-		this.c = c;
+		this.card = card;
+		if(card.length() < 16){
+			cash = 1;
+		}
+		else{
+			cash = 0;
+		}
 	}
 
 	public void complete() throws SQLException, IOException, java.lang.ClassNotFoundException
@@ -35,7 +42,7 @@ public class Pay{
 				sql = " INSERT INTO transactionItems VALUES (" + idtransaction+ ","+item.getItemID()+", "+item.getQuantity()+");";
 				stmt.executeUpdate(sql);
 			}
-			sql = " INSERT INTO transactionInfo VALUES (" + idtransaction + ", "+c+");";
+			sql = " INSERT INTO transactionInfo VALUES (" + idtransaction + ", '"+card+"', "+cash+");";
 			stmt.executeUpdate(sql);
 		}
 			catch(SQLException ex){

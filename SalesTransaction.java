@@ -25,7 +25,7 @@ public class SalesTransaction{
             for(SalesLineItem lineItem : lines){
                 if(lineItem.getItemID().equals(itemID)){
                     //increment existing lineItem conatianing item to be added
-                    lineItem.incrementBy(quantity);
+                    lineItem.incrementBy(quantity, curStock);
                     exists = true;
                 }
             }
@@ -34,6 +34,21 @@ public class SalesTransaction{
                 lines.add(new SalesLineItem(itemID, quantity, inventory.getSaleItemPriceFromID(itemID), inventory.getSaleItemNameFromID(itemID)));
             }
             return "This item was added to sales transaction successfuly.";
+        }
+    }
+
+    public void removeItemByIDAndQuantity(String itemID, int quantity){
+        int i = 0;
+        SalesLineItem temp = null;
+        for(SalesLineItem lineItem : lines){
+            if(lineItem.getItemID().equals(itemID)){
+                //decrement existing lineItem conatianing item to be added
+                i = lineItem.decrementBy(quantity);
+                temp = lineItem;            
+            }
+        }
+        if(i == 0){
+            lines.remove(temp);
         }
     }
 

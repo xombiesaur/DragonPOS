@@ -86,6 +86,11 @@ public class ProcessSaleFrame extends javax.swing.JFrame {
         });
 
         buttonRemove.setText("Remove");
+        buttonRemove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonRemoveActionPerformed(evt);
+            }
+        });
 
         jScrollPane2.setViewportView(textPaneReceipt);
 
@@ -234,6 +239,12 @@ public class ProcessSaleFrame extends javax.swing.JFrame {
         saleT.addItemByIDAndQuantity(textFieldItemID.getText(), Integer.parseInt(textFieldQuantity.getText()));
         updateLineItemDisplay();
     }//GEN-LAST:event_buttonAddActionPerformed
+
+    private void buttonRemoveActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+        saleT.removeItemByIDAndQuantity(textFieldItemID.getText(), Integer.parseInt(textFieldQuantity.getText()));
+        updateLineItemDisplay();
+    }
 
     private void buttonProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonProcessActionPerformed
         // TODO add your handling code here:
