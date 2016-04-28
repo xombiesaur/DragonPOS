@@ -11,7 +11,7 @@ import javax.swing.GroupLayout;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+ 
 /**
  *
  * @author Amoah
@@ -191,7 +191,7 @@ public class ActionFrame extends javax.swing.JFrame {
         this.dispose();
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ProcessSaleReturnFrame().setVisible(true);
+                new SaleReturnFrameAK().setVisible(true);
             }
         });
     }//GEN-LAST:event_buttonProcessSaleReturnActionPerformed
