@@ -26,8 +26,11 @@ public class SalesLineItem{
     	return price;
     }
 
-    public void incrementBy(int q){
+    public void incrementBy(int q, int curStock){
     	quantity += q;
+        if(quantity > curStock){
+            quantity = curStock;
+        }
     }
 
     public int decrementBy(int q){

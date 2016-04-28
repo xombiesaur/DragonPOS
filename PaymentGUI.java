@@ -18,6 +18,7 @@ public class PaymentGUI extends JFrame {
 
 	private JTextField txtAmount;
 	private JTextField textField;
+	private JTextField cashAmount;
         private float totalCost;
         JLabel lblEnterCreditNumber;
         private SalesTransaction sale;
@@ -94,22 +95,36 @@ public class PaymentGUI extends JFrame {
 		textField.setBounds(261, 188, 190, 37);
 		this.getContentPane().add(textField);
 		textField.setColumns(10);
+
+		cashAmount = new JTextField();
+		cashAmount.setBounds(261, 318, 190, 37);
+		this.getContentPane().add(cashAmount);
+		cashAmount.setColumns(10);
 		
 		JLabel lblEnterprice = new JLabel("Amount to Pay:");
 		lblEnterprice.setBounds(261, 29, 190, 28);
 		this.getContentPane().add(lblEnterprice);
 		
-		JLabel lblEnterCreditNumber = new JLabel("Enter Credit Number or Amount In Cash");
+		JLabel lblEnterCreditNumber = new JLabel("Enter Card Number");
 		lblEnterCreditNumber.setBounds(261, 159, 190, 28);
 		this.getContentPane().add(lblEnterCreditNumber);
+
+		JLabel lblOr = new JLabel("OR");
+		lblOr.setBounds(261, 229, 190, 28);
+		this.getContentPane().add(lblOr);
+
+		JLabel lblEnterCash = new JLabel("Enter Cash Tendered");
+		lblEnterCash.setBounds(261, 289, 190, 28);
+		this.getContentPane().add(lblEnterCash);
 		
 		JButton btnPay = new JButton("Pay");
 		btnPay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0){
 			try {
-				Pay pay = new Pay(sale, txtAmount.getText());
+				Pay pay = new Pay(sale, textField.getText());
 				pay.complete();
 				JOptionPane.showMessageDialog(null, "Amount $"+txtAmount.getText()+" has been paid");
+				setVisible(false);
 				txtAmount.setText("");
 				textField.setText("");
 			}
@@ -126,12 +141,12 @@ public class PaymentGUI extends JFrame {
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-		        java.awt.EventQueue.invokeLater(new Runnable() {
+		        /*java.awt.EventQueue.invokeLater(new Runnable() {
 		            public void run() {
 		                new ActionFrame().setVisible(true);
 		                
 		            }
-		        });
+		        });*/
 			}
 		});
 		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 16));

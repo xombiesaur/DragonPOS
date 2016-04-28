@@ -25,7 +25,7 @@ public class SalesTransaction{
             for(SalesLineItem lineItem : lines){
                 if(lineItem.getItemID().equals(itemID)){
                     //increment existing lineItem conatianing item to be added
-                    lineItem.incrementBy(quantity);
+                    lineItem.incrementBy(quantity, curStock);
                     exists = true;
                 }
             }
