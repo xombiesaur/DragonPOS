@@ -106,12 +106,16 @@ public class PaymentGUI extends JFrame {
 		JButton btnPay = new JButton("Pay");
 		btnPay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0){
+			try {
 				Pay pay = new Pay(sale, txtAmount.getText());
 				pay.complete();
 				JOptionPane.showMessageDialog(null, "Amount $"+txtAmount.getText()+" has been paid");
 				txtAmount.setText("");
 				textField.setText("");
-
+			}
+			catch(Exception ex){
+				
+			}
 			}
 		});
 		btnPay.setFont(new Font("Tahoma", Font.PLAIN, 16));

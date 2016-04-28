@@ -83,6 +83,11 @@ public class ProcessRentalFrame extends javax.swing.JFrame {
         });
 
         buttonRemove.setText("Remove");
+        buttonRemove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonRemoveActionPerformed(evt);
+            }
+        });
 
         buttonProcess.setText("Process");
         buttonProcess.addActionListener(new java.awt.event.ActionListener() {
@@ -235,6 +240,10 @@ public class ProcessRentalFrame extends javax.swing.JFrame {
        	rentalT.addItemByID(textFieldItemID.getText(),Integer.parseInt(textFieldDuration.getText()), Integer.parseInt(textFieldQuantity.getText()));
         updateLineItemDisplay();
     }//GEN-LAST:event_buttonAddActionPerformed
+    
+    private void buttonRemoveActionPerformed(java.awt.event.ActionEvent evt){
+    		rentalT.removeItem();
+    }
 
     private void buttonProcessActionPerformed(java.awt.event.ActionEvent evt) {                                              
         // TODO add your handling code here:

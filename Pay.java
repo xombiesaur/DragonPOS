@@ -38,6 +38,9 @@ public class Pay{
 			sql = " INSERT INTO transactionInfo VALUES (" + idtransaction + ", "+c+");";
 			stmt.executeUpdate(sql);
 		}
+			catch(SQLException ex){
+							System.out.println(ex.toString());
+			}
       catch(Exception ex){
 			System.out.println(ex.toString());
 		}

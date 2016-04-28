@@ -9,7 +9,12 @@ public class RentalTransaction{
 		public RentalTransaction(){
 			inventory = new Inventory();
 		}
-
+		public void removeItem(){
+			if (!lines.isEmpty()){
+				lines.remove(lines.size()-1);
+			}
+		}
+			
 		public String addItemByID(String itemID, int duration , int quantity){
     	//check for item in inventory
 
