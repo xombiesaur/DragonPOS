@@ -24,6 +24,7 @@ public class RentalTransaction{
       }
      else{
      		if(isRental){
+     			/*
             boolean exists = false;
             //check for item already in inventory
             for(RentalLineItem lineItem : lines){
@@ -38,6 +39,10 @@ public class RentalTransaction{
                 //create new salesline item
                 lines.add(new RentalLineItem(itemID, duration, quantity, inventory.getSaleItemPriceFromID(itemID), inventory.getSaleItemNameFromID(itemID)));
             }
+            */
+            String iName = inventory.getSaleItemNameFromID(itemID);
+                //create new salesline item
+                lines.add(new RentalLineItem(itemID, duration, quantity, inventory.getSaleItemPriceFromID(itemID), inventory.getSaleItemNameFromID(itemID)));
         	  return "This item was added to sales transaction successfuly.";
         	}
         	return "Not a rental";
