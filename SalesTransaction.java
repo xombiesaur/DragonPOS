@@ -37,6 +37,21 @@ public class SalesTransaction{
         }
     }
 
+    public void removeItemByIDAndQuantity(String itemID, int quantity){
+        int i = 0;
+        SalesLineItem temp = null;
+        for(SalesLineItem lineItem : lines){
+            if(lineItem.getItemID().equals(itemID)){
+                //decrement existing lineItem conatianing item to be added
+                i = lineItem.decrementBy(quantity);
+                temp = lineItem;            
+            }
+        }
+        if(i == 0){
+            lines.remove(temp);
+        }
+    }
+
     public void getPayment(Scanner scanner){
     	System.out.printf("Please choose method of payment. (cash or card): ");
     	String paymentMethod = scanner.next();

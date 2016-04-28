@@ -30,6 +30,14 @@ public class SalesLineItem{
     	quantity += q;
     }
 
+    public int decrementBy(int q){
+        quantity -= q;
+        if(quantity < 0){
+            quantity = 0;
+        }
+        return quantity;
+    }
+
     public String getItemDescription(){
     	return description;
     }
